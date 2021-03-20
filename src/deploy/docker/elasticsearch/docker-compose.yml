@@ -1,30 +1,28 @@
 version: '3.7'
 services:
   search-service-elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    image: elasticsearch:7.11.1
     container_name: elasticsearch
     restart: always
     read_only: true
     environment:
       - TZ=Europe/Berlin
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
-    env_file:
-      - ./.env
+      - discovery.type=single-node
     volumes:
       - esdata:/usr/share/elasticsearch/data
       - esconfig:/usr/share/elasticsearch/config
       - eslogs:/usr/share/elasticsearch/logs
-      - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
     tmpfs:
       - /tmp:exec,mode=1777
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "--noproxy", "localhost", "http://localhost:9200/"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    expose:
-      - "9200"
-      - "9300"
+#    healthcheck:
+#      test: ["CMD", "curl", "--fail", "--noproxy", "localhost", "http://localhost:9200/"]
+#      interval: 10s
+#      timeout: 10s
+#      retries: 3
+    ports:
+      - 9200:9200
+      - 9300:9300
     networks:
       - search-service-net
 
