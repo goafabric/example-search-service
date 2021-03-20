@@ -16,6 +16,8 @@ services:
     volumes:
       - tmp:/tmp
       - applogs:/usr/share/logs
+    ports:
+      - 50800:50800
     networks:
       - search-service-net
 
