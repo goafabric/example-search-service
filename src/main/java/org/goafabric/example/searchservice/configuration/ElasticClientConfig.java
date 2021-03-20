@@ -14,14 +14,14 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "org.goafabric.example.searchservice.persistence")
 public class ElasticClientConfig {
-    @Value("{elasticsearch.url}")
+    @Value("${elasticsearch.url}")
     private String elasticSearchUrl;
 
     @Bean
     public RestHighLevelClient client() {
         ClientConfiguration clientConfiguration
             = ClientConfiguration.builder()
-            .connectedTo("localhost:9200")
+            .connectedTo(elasticSearchUrl)
             .build();
         log.info("Elasticsearch has started.");
         return RestClients.create(clientConfiguration).rest();
