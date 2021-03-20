@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  example-search-service:
+    image: goafabric/example-search-service${ARCH_SUFFIX}:1.0.0-SNAPSHOT
+    container_name: example-search-service
+    restart: always
+    read_only: true
+    environment:
+      - TZ=Europe/Berlin
+      - elasticsearch.url=host.docker.internal:9200
+    healthcheck:
+      test: "curl -f http://localhost:50800/actuator/health || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    volumes:
+      - tmp:/tmp
+      - applogs:/usr/share/logs
+    networks:
+      - search-service-net
+
+volumes:
+  tmp:
+  applogs:
+
+networks:
+  search-service-net:
+    driver: bridge
+    name: search-service-net
