@@ -22,9 +22,8 @@ public class PersonLogic {
     }
 
     public List<Person> findAll() {
-        return null;
-        //return personMapper.map(
-        //       personRepository.findAll());
+        return personMapper.map(
+                personRepository.findAll());
     }
 
     public List<Person> findByFirstName(String firstName) {
@@ -32,6 +31,10 @@ public class PersonLogic {
                 personRepository.findByFirstName(firstName));
     }
 
+    public List<Person> findByLastName(String lastName) {
+        return personMapper.map(
+                personRepository.findByLastName(lastName));
+    }
 
     public Person save(Person person) {
         return personMapper.map(

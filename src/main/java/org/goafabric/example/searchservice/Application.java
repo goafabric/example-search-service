@@ -21,6 +21,10 @@ public class Application {
     @Bean
     public CommandLineRunner loadData(
             PersonLogic personLogic) {
+        if (!personLogic.findAll().isEmpty()) {
+            return null;
+        }
+
         return (args) -> {
             personLogic.save(Person.builder()
                     .firstName("Homer").lastName("Simpson")
