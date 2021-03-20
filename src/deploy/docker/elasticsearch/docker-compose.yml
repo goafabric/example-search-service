@@ -7,7 +7,7 @@ services:
     read_only: true
     environment:
       - TZ=Europe/Berlin
-      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
       - discovery.type=single-node
     volumes:
       - esdata:/usr/share/elasticsearch/data
