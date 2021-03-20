@@ -16,6 +16,8 @@ management:
     health:
       circuitbreakers:
         enabled: true
+#datasource
+elasticsearch.url: "localhost:9200"
 
 #log levels
 logging.level.root: "WARN"
