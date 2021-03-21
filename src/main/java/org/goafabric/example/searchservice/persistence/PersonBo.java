@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "persons")
+//multi tenancy: https://www.sothawo.com/2020/07/how-to-provide-a-dynamic-index-name-in-spring-data-elasticsearch-using-spel/
 public class PersonBo {
     @Id
     private String id;
