@@ -22,6 +22,7 @@ public class PersonLogic {
     }
 
     public List<Person> findAll() {
+        //List<Person> x = personRepository.findAll().stream().map(personMapper::map).collect(Collectors.toList());
         return personMapper.map(
                 personRepository.findAll());
     }
