@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 public class PersonLogic {
@@ -22,9 +24,9 @@ public class PersonLogic {
     }
 
     public List<Person> findAll() {
-        //List<Person> x = personRepository.findAll().stream().map(personMapper::map).collect(Collectors.toList());
         return personMapper.map(
-                personRepository.findAll());
+                StreamSupport.stream(personRepository.findAll().spliterator(), false)
+                        .collect(Collectors.toList()));
     }
 
     public List<Person> findByFirstName(String firstName) {
