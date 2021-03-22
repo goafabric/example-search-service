@@ -11,7 +11,7 @@ import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @Slf4j
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableElasticsearchRepositories(basePackages = "org.goafabric.example.searchservice.persistence")
 public class ElasticClientConfig {
     @Value("${elasticsearch.url}")
