@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   example-search-service:
-    image: goafabric/example-search-service${ARCH_SUFFIX}:1.0.1-SNAPSHOT
+    image: goafabric/example-search-service-native${ARCH_SUFFIX}:1.0.1-SNAPSHOT
     container_name: example-search-service
     restart: always
     read_only: true
