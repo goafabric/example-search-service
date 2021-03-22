@@ -22,9 +22,10 @@ public class PersonLogic {
     }
 
     public List<Person> findAll() {
+        return null;
         //List<Person> x = personRepository.findAll().stream().map(personMapper::map).collect(Collectors.toList());
-        return personMapper.map(
-                personRepository.findAll());
+        //return personMapper.map(
+          //      personRepository.findAll());
     }
 
     public List<Person> findByFirstName(String firstName) {
