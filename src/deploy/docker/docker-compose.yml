@@ -7,7 +7,7 @@ services:
     read_only: true
     environment:
       - TZ=Europe/Berlin
-      - elasticsearch.url=host.docker.internal:9200
+      - elasticsearch.url=172.17.0.1:9200
     healthcheck:
       test: "curl -f http://localhost:50800/actuator/health || exit 1"
       interval: 10s
