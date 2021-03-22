@@ -13,8 +13,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "persons")
-//multi tenancy: https://www.sothawo.com/2020/07/how-to-provide-a-dynamic-index-name-in-spring-data-elasticsearch-using-spel/
+@Document(indexName = "#{T(org.goafabric.example.searchservice.crossfunctional.TenantRequestContext).getPrefix()}persons")
 public class PersonBo {
     @Id
     private String id;

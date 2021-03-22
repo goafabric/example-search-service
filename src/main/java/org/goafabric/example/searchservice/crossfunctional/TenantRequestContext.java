@@ -1,5 +1,4 @@
-/*
-package org.goafabric.example.searchservice.configuration;
+package org.goafabric.example.searchservice.crossfunctional;
 
 public final class TenantRequestContext {
     private TenantRequestContext() {
@@ -16,6 +15,10 @@ public final class TenantRequestContext {
         return tenantId;
     }
 
+    public static String getPrefix() {
+        return "tenant-" + getTenantId() + "-";
+    }
+
     static void setTenantId(String tenantId) {
         tenantIdThreadLocal.set(tenantId);
     }
@@ -24,4 +27,3 @@ public final class TenantRequestContext {
         tenantIdThreadLocal.remove();
     }
 }
- */
