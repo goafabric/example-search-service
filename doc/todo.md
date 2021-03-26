@@ -1,4 +1,4 @@
-- native image, spel multi tenancy expression not working
+- native image
 - kubernetes yml
 
 - reactive branch
