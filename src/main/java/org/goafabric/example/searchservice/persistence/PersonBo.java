@@ -13,8 +13,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@Document(indexName = "#{T(org.goafabric.example.searchservice.crossfunctional.TenantRequestContext).getPrefix()}persons")
-@Document(indexName = "persons")
+@Document(indexName = "#{T(org.goafabric.example.searchservice.crossfunctional.TenantRequestContext).getPrefix()}persons")
+//@Document(indexName = "persons")
 public class PersonBo {
     @Id
     private String id;
