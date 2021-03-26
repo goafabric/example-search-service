@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TenantIdBean {
     public String getPrefix() {
-        log.info("getting prefix ");
         final String prefix = TenantRequestContext.getPrefix();
         log.info("got prefix" + prefix);
         return prefix;
