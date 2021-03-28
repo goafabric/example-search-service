@@ -16,14 +16,20 @@ spec:
       labels:
         app: ${_Values_app_name}
     spec:
+      initContainers:
+        - name: wait-for-dependent-service
+          image: stefanevinance/wait-for-200
+          env:
+            - name: URL
+              value: http://elasticsearch.example.svc.cluster.local:9200
 #      initContainers:
-#        - name: check-db-ready
-#          image: postgres:13.2
-#          command: ['sh', '-c',
-#              'until pg_isready -h ${_Values_root_name}-postgres -p 5432;
-#                     do echo waiting for database; sleep 2; done;']
-#      imagePullSecrets:
-#        - name: ${_Values_image_pullSecrets}
+#        - name: wait-for-webserver
+#          image: curlimages/curl:latest
+#          command: ["/bin/sh","-c"]
+#          args: ["while [ $(curl -sw '%{http_code}' http://elasticsearch.svc.cluster.local -o /dev/null) -ne 200 ]; do sleep 2; done"]
+  # "https://varlogdiego.com/kubernetes-wait-until-another-pod-is-ready"
+  #      imagePullSecrets:
+  #        - name: ${_Values_image_pullSecrets}
       containers:
         - name: ${_Values_app_name}
           image: "${_Values_image_repository}${_Values_server_arch}:${_Values_image_tag}"
