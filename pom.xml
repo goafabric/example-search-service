@@ -123,6 +123,26 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>docker</executable>
+                    <arguments>
+                        <argument>push</argument>
+                        <argument>${docker.registry}/${project.artifactId}-native:${project.version}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
