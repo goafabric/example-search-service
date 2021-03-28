@@ -264,7 +264,7 @@
                         <version>${jib-maven-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>docker-image-amd64</id>
+                                <id>docker-image-amd64</id> <!-- we need a unique id ALSO here, otherwise maven will only deploy one of the profiles if both are selected -->
                                 <phase>install</phase>
                                 <goals>
                                     <goal>build</goal>
@@ -306,7 +306,7 @@
                         <version>${jib-maven-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>docker-image-arm64v8</id>
+                                <id>docker-image-arm64v8</id> <!-- we need a unique id ALSO here, otherwise maven will only deploy one of the profiles if both are selected -->
                                 <phase>install</phase>
                                 <goals>
                                     <goal>build</goal>
