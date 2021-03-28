@@ -1,5 +1,0 @@
-#!/bin/bash
-export STACK_NAME="elastic-stack"
-export SERVICE_MEM="256m"
-[[ "$(uname -m)" == "arm64" || "$(uname -m)" == "aarch64" ]] && export ARCH_SUFFIX="-arm64v8"
-./stack_util ${STACK_NAME} $1
