@@ -22,6 +22,6 @@ metadata:
   name: ${_Values_app_name}-config-external
 stringData:
   #datasource
-  elasticsearch.url: "elasticsearch-search:9200"
+  elasticsearch.url: "elasticsearch:9200"
   
 data:

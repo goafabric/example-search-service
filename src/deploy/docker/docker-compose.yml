@@ -43,7 +43,7 @@ services:
     tmpfs:
       - /tmp:exec,mode=1777
     healthcheck:
-      test: ["CMD", "curl", "--fail", "--noproxy", "localhost", "http://localhost:9200/"]
+      test: ["CMD", "curl", "--fail", "--noproxy", "localhost", "http://localhost:9200/_cluster/health"]
       interval: 10s
       timeout: 10s
       retries: 3

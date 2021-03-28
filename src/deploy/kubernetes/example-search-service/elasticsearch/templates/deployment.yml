@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${_Values_app_name}
+spec:
+  selector:
+    matchLabels:
+      app: ${_Values_app_name}
+  replicas: 1
+  strategy:
+    type: Recreate #RollingUpdate
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
+      labels:
+        app: ${_Values_app_name}
+    spec:
+      containers:
+        - name: ${_Values_app_name}
+          image: "${_Values_image_repository}:${_Values_image_tag}"
+          imagePullPolicy: IfNotPresent #Always
+          ports:
+            - name: transport
+              containerPort: ${_Values_service_port}
+              protocol: TCP
+
+          envFrom:
+            - configMapRef:
+                name: ${_Values_app_name}-config
+            - secretRef:
+                name: ${_Values_app_name}-config-external
+
+          resources:
+            requests:
+              memory: "${_Values_resources_requests_memory}"
+              cpu: "${_Values_resources_requests_cpu}"
+
+          readinessProbe:
+            httpGet:
+              path: /_cluster/health
+              port: transport
+            initialDelaySeconds: ${_Values_readinessProbe_initialDelaySeconds}
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /_cluster/health
+              port: transport
+            initialDelaySeconds: ${_Values_readinessProbe_initialDelaySeconds}
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 3
+
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: ${_Values_app_name}-pvc-volume
+            - mountPath: /usr/share/elasticsearch/logs
+              name: ${_Values_app_name}-applogs
+              
+      volumes:
+        - name: ${_Values_app_name}-pvc-volume
+          persistentVolumeClaim:
+            claimName: ${_Values_app_name}-pvc
+        - name: ${_Values_app_name}-applogs
+          emptyDir: {}
+
+

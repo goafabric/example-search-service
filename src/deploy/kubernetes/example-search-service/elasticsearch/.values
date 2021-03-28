@@ -1,0 +1,17 @@
+_Release_namespace=example
+_Values_root_name=elasticsearch
+_Values_app_name=${_Values_root_name}
+_Values_ingress_name=elastic
+
+_Values_image_repository=docker.elastic.co/elasticsearch/elasticsearch
+_Values_image_tag=7.11.2
+
+_Values_service_type=ClusterIP
+_Values_service_port=9200
+_Values_service_nodePort_dev=30920
+
+_Values_resources_requests_memory=256M
+_Values_resources_requests_cpu=250m
+_Values_readinessProbe_initialDelaySeconds=10
+
+

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${_Values_app_name}-config
+data:
+  TZ: Europe/Berlin
+  ES_JAVA_OPTS: -Xms${_Values_resources_requests_memory} -Xmx${_Values_resources_requests_memory} ${_Values_profiler_command}
+
+  #  cluster.name: eos-elastic-cluster
+  cluster.name: elasticsearch
+  discovery.type: single-node
+  http.port: "${_Values_service_port}"
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${_Values_app_name}-config-external
+type: Opaque
+stringData:
+data:
+
