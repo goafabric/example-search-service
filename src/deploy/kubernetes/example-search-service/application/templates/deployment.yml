@@ -17,21 +17,11 @@ spec:
       labels:
         app: ${_Values_app_name}
     spec:
-#      initContainers:
-#        - name: wait-for-dependent-service
-#          image: stefanevinance/wait-for-200
-#          env:
-#            - name: URL
-##              value: http://elasticsearch.example:9200/_cat/health
-#              value: http://elasticsearch.example:9200
       initContainers:
         - name: wait-for-webserver
           image: curlimages/curl:7.75.0
           command: ["/bin/sh","-c"]
           args: ["while [ \$(curl -sw '%{http_code}' http://elasticsearch.example:9200/_cat/health -o /dev/null) -ne 200 ]; do sleep 2; done"]
-  # "https://varlogdiego.com/kubernetes-wait-until-another-pod-is-ready"
-  #      imagePullSecrets:
-  #        - name: ${_Values_image_pullSecrets}
       containers:
         - name: ${_Values_app_name}
           image: "${_Values_image_repository}${_Values_server_arch}:${_Values_image_tag}"
