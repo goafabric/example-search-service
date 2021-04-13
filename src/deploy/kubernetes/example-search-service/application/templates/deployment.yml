@@ -21,7 +21,8 @@ spec:
           image: stefanevinance/wait-for-200
           env:
             - name: URL
-              value: http://elasticsearch.example.svc.cluster.local:9200
+#              value: http://elasticsearch.example:9200/_cat/health
+              value: http://elasticsearch.example:9200
 #      initContainers:
 #        - name: wait-for-webserver
 #          image: curlimages/curl:latest
