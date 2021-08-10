@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.configuration;
+package org.goafabric.example.searchservice.crossfunctional;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +27,5 @@ public class ElasticClientConfig {
         return RestClients.create(clientConfiguration).rest();
     }
 
-    /*
-    @Bean
-    public ElasticsearchOperations elasticsearchTemplate() {
-        return new ElasticsearchRestTemplate(client());
-    }
-     */
+
 }

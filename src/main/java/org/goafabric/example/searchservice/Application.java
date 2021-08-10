@@ -1,10 +1,10 @@
 package org.goafabric.example.searchservice;
 
-import org.goafabric.example.searchservice.logic.PersonLogic;
-import org.goafabric.example.searchservice.service.dto.Person;
+import org.goafabric.example.searchservice.persistence.DatabaseProvisioning;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -19,25 +19,11 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner loadData(
-            PersonLogic personLogic) {
-        if (!personLogic.findAll().isEmpty()) {
-            return null;
-        }
-
-        return (args) -> {
-            personLogic.save(Person.builder()
-                    .firstName("Homer").lastName("Simpson")
-                    .build());
-
-            personLogic.save(Person.builder()
-                    .firstName("Bart").lastName("Simpson")
-                    .build());
-
-            personLogic.save(Person.builder()
-                    .firstName("Monty").lastName("Burns")
-                    .build());
+    public CommandLineRunner init(ApplicationContext context, DatabaseProvisioning databaseProvisioning) {
+        return args -> {
+            if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { SpringApplication.exit(context, () -> 0);}
+            else {
+                databaseProvisioning.run();} //don't to stuff like this at home kidz
         };
 
-    }
-}
+    }}

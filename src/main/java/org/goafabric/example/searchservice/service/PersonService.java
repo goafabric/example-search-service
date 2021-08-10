@@ -2,7 +2,6 @@ package org.goafabric.example.searchservice.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.logic.PersonLogic;
-import org.goafabric.example.searchservice.service.dto.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

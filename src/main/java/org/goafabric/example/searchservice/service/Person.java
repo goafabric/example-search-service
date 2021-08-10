@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.service.dto;
+package org.goafabric.example.searchservice.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
