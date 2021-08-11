@@ -8,6 +8,7 @@ services:
     environment:
       - TZ=Europe/Berlin
       - elasticsearch.url=elasticsearch-search:9200
+      - database.provisioning.goals=-import-demo-data
     healthcheck:
       test: "curl -f http://localhost:50800/actuator/health || exit 1"
       interval: 10s

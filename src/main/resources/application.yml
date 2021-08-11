@@ -17,8 +17,9 @@ management:
       circuitbreakers:
         enabled: true
 
-#datasource
+#persistence
 elasticsearch.url: "localhost:9200"
+database.provisioning.goals: "import-demo-data"
 
 #log levels
 logging.level.root: "WARN"
