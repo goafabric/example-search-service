@@ -23,7 +23,4 @@ public class PersonBo {
 
     @Field(type = FieldType.Text)
     private String lastName;
-
-    //@Field(type = FieldType.Keyword)
-    //private String userId;
 }

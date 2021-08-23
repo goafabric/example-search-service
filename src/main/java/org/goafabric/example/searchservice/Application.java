@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
@@ -23,7 +23,9 @@ public class Application {
         return args -> {
             if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { SpringApplication.exit(context, () -> 0);}
             else {
-                databaseProvisioning.run();} //don't to stuff like this at home kidz
+                databaseProvisioning.run();
+            } 
         };
 
-    }}
+    }
+}
