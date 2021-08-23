@@ -4,7 +4,6 @@ import org.goafabric.example.searchservice.mapper.PersonMapper;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
 import org.goafabric.example.searchservice.service.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +16,6 @@ public class PersonLogic {
     private PersonMapper personMapper;
 
     @Autowired
-    @Lazy
     private PersonRepository personRepository;
 
     public Person getById(String id) {
