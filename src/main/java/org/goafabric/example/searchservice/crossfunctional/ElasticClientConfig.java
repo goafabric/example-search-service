@@ -17,6 +17,13 @@ public class ElasticClientConfig {
     @Value("${elasticsearch.url}")
     private String elasticSearchUrl;
 
+    /*
+    @Bean
+    public ElasticsearchOperations elasticsearchTemplate() {
+       return new ElasticsearchRestTemplate(client());
+    }
+     */
+
     @Bean
     public RestHighLevelClient client() {
         ClientConfiguration clientConfiguration
