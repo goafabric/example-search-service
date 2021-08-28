@@ -1,4 +1,6 @@
 #1.0.3
+- plugin management
+- upgrade to Spring Native 0.10.3
 
 #1.0.2
 - refactoring and bugfixes
