@@ -9,3 +9,6 @@ docker run --name example-search-service --rm -p50800:50800 -e "elasticsearch.ur
 
 #elastic
 docker run -d --name elasticsearch-search --rm -p 9200:9200  -e "discovery.type=single-node" -e "ES_JAVA_OPTS=-Xmx256m" docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+                    
+#mongodb
+docker run -d --name mongodb --rm -p27017:27017 mongo:4.4.5
