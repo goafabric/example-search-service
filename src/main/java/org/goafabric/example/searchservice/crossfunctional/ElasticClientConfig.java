@@ -1,5 +1,5 @@
+/*
 package org.goafabric.example.searchservice.crossfunctional;
-
 
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -17,13 +17,6 @@ public class ElasticClientConfig {
     @Value("${elasticsearch.url}")
     private String elasticSearchUrl;
 
-    /*
-    @Bean
-    public ElasticsearchOperations elasticsearchTemplate() {
-       return new ElasticsearchRestTemplate(client());
-    }
-     */
-
     @Bean
     public RestHighLevelClient client() {
         ClientConfiguration clientConfiguration
@@ -33,6 +26,6 @@ public class ElasticClientConfig {
         log.info("Elasticsearch has started.");
         return RestClients.create(clientConfiguration).rest();
     }
-
-
 }
+
+ */
