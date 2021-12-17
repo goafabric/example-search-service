@@ -1,7 +1,9 @@
-package org.goafabric.example.searchservice.persistence;
+package org.goafabric.example.searchservice.persistence.transformer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.crossfunctional.TenantIdInterceptor;
+import org.goafabric.example.searchservice.persistence.PersonBo;
+import org.goafabric.example.searchservice.persistence.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

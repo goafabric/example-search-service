@@ -1,6 +1,6 @@
 package org.goafabric.example.searchservice;
 
-import org.goafabric.example.searchservice.persistence.DatabaseProvisioning;
+import org.goafabric.example.searchservice.persistence.transformer.DatabaseProvisioning;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
