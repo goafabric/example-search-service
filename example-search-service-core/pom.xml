@@ -108,6 +108,17 @@
             </dependencies>
         </profile>
 
+        <profile>
+            <id>persistence-jpa</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.goafabric</groupId>
+                    <artifactId>example-search-service-jpa</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
     </profiles>
 
 </project>
