@@ -6,7 +6,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>example-search-service-core</module>
-        <module>example-search-service-mongodb</module>
+        <module>example-search-service-mongo</module>
+        <module>example-search-service-elastic</module>
     </modules>
 
     <parent>

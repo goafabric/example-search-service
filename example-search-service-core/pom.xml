@@ -39,7 +39,7 @@
         <!-- persistence  -->
         <dependency>
             <groupId>org.goafabric</groupId>
-            <artifactId>example-search-service-mongodb</artifactId>
+            <artifactId>example-search-service-mongo</artifactId>
             <version>${project.version}</version>
         </dependency>
 
