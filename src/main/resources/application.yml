@@ -28,6 +28,10 @@ spring:
       port: 27017
       min-connections-per-host: 10
       max-connections-per-host: 100
+      
+      authentication-database: admin
+      username: mongodb
+      password: mongodb
 
 #log levels
 logging.level.root: "WARN"
