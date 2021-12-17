@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence.transformer;
+package org.goafabric.example.searchservice.crossfunctional;
 
 
 import lombok.extern.slf4j.Slf4j;
