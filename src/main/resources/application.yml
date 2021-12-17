@@ -18,8 +18,16 @@ management:
         enabled: true
 
 #persistence
-elasticsearch.url: "localhost:9200"
 database.provisioning.goals: "-import-demo-data"
+
+elasticsearch.url: "localhost:9200"
+
+spring:
+  data:
+    mongodb:
+      port: 27017
+      min-connections-per-host: 10
+      max-connections-per-host: 100
 
 #log levels
 logging.level.root: "WARN"
