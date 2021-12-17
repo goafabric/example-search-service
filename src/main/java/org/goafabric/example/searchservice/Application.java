@@ -21,10 +21,8 @@ public class Application {
     @Bean
     public CommandLineRunner init(ApplicationContext context, DatabaseProvisioning databaseProvisioning) {
         return args -> {
+            databaseProvisioning.run();
             if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { SpringApplication.exit(context, () -> 0);}
-            else {
-                databaseProvisioning.run();
-            } 
         };
 
     }
