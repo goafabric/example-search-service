@@ -37,17 +37,12 @@
         </dependency>
 
         <!-- persistence  -->
-        <!--
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <groupId>org.goafabric</groupId>
+            <artifactId>example-search-service-mongodb</artifactId>
+            <version>${project.version}</version>
         </dependency>
-        -->
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
 
         <!-- test -->
         <dependency>
