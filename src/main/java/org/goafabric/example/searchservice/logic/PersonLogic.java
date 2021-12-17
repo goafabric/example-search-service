@@ -1,6 +1,5 @@
 package org.goafabric.example.searchservice.logic;
 
-import org.goafabric.example.searchservice.mapper.PersonMapper;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
 import org.goafabric.example.searchservice.service.Person;
 import org.springframework.beans.factory.annotation.Autowired;

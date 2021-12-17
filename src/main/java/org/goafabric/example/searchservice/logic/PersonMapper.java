@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.mapper;
+package org.goafabric.example.searchservice.logic;
 
 import org.goafabric.example.searchservice.persistence.PersonBo;
 import org.goafabric.example.searchservice.service.Person;
