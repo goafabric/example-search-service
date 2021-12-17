@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("#{@tenantIdBean.getPrefix()}persons")
+@Document("#{@tenantIdBean.getPrefix()}person")
 public class PersonBo {
     @Id
     private String id;
