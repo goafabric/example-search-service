@@ -3,12 +3,17 @@ package org.goafabric.example.searchservice.persistence.transformer;
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.crossfunctional.TenantIdInterceptor;
 import org.goafabric.example.searchservice.logic.PersonLogic;
+import org.goafabric.example.searchservice.service.Address;
 import org.goafabric.example.searchservice.service.Person;
+import org.goafabric.example.searchservice.service.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -17,7 +22,7 @@ public class DatabaseProvisioning {
     String goals;
 
     @Autowired
-    PersonLogic personRepository;
+    PersonLogic personLogic;
 
     @Autowired
     ApplicationContext applicationContext;
@@ -35,7 +40,8 @@ public class DatabaseProvisioning {
     }
 
     private void importDemoData() {
-        if (!personRepository.findAll().iterator().hasNext()) {
+        personLogic.deleteAll();
+        if (!personLogic.findAll().iterator().hasNext()) {
             createDemoData("0");
             createDemoData("5a2f");
         }
@@ -43,16 +49,41 @@ public class DatabaseProvisioning {
 
     private void createDemoData(String tenantId) {
         TenantIdInterceptor.setTenantId(tenantId);
-        personRepository.save(Person.builder()
+        personLogic.save(Person.builder()
                 .firstName("Homer").lastName("Simpson")
+                .address(createAddress("Evergreen Terace 1"))
+                .skills(createSkills())
                 .build());
 
-        personRepository.save(Person.builder()
+        personLogic.save(Person.builder()
                 .firstName("Bart").lastName("Simpson")
+                .address(createAddress("Everblue Terace 1"))
+                .skills(createSkills())
                 .build());
 
-        personRepository.save(Person.builder()
+        personLogic.save(Person.builder()
                 .firstName("Monty").lastName("Burns")
+                .address(createAddress("Monty Mansion"))
+                .skills(createSkills())
                 .build());
     }
+
+    private Address createAddress(String street) {
+        return Address.builder()
+                .street(street).city("Springfield")
+                .build();
+    }
+
+    private List<Skill> createSkills() {
+        return Arrays.asList(
+                Skill.builder()
+                        .name("java")
+                        .description("functional")
+                        .build(),
+                Skill.builder()
+                        .name("go")
+                        .description("gopher")
+                        .build());
+    }
+
 }

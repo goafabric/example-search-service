@@ -44,4 +44,8 @@ public class PersonLogic {
                         personMapper.map(person)));
     }
 
+    public void deleteAll() {
+        personRepository.deleteAll();
+    }
+
 }
