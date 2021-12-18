@@ -2,8 +2,8 @@ package org.goafabric.example.searchservice.persistence.transformer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.crossfunctional.TenantIdInterceptor;
-import org.goafabric.example.searchservice.persistence.PersonBo;
-import org.goafabric.example.searchservice.persistence.PersonRepository;
+import org.goafabric.example.searchservice.logic.PersonLogic;
+import org.goafabric.example.searchservice.service.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,7 @@ public class DatabaseProvisioning {
     String goals;
 
     @Autowired
-    PersonRepository personRepository;
+    PersonLogic personRepository;
 
     @Autowired
     ApplicationContext applicationContext;
@@ -43,15 +43,15 @@ public class DatabaseProvisioning {
 
     private void createDemoData(String tenantId) {
         TenantIdInterceptor.setTenantId(tenantId);
-        personRepository.save(PersonBo.builder()
+        personRepository.save(Person.builder()
                 .firstName("Homer").lastName("Simpson")
                 .build());
 
-        personRepository.save(PersonBo.builder()
+        personRepository.save(Person.builder()
                 .firstName("Bart").lastName("Simpson")
                 .build());
 
-        personRepository.save(PersonBo.builder()
+        personRepository.save(Person.builder()
                 .firstName("Monty").lastName("Burns")
                 .build());
     }
