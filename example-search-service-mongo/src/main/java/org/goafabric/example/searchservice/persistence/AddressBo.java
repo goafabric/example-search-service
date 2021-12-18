@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
-@Document
+@Document("#{@tenantIdBean.getPrefix()}address")
 public class AddressBo {
     @Id
     private String id;
