@@ -1,33 +1,32 @@
 version: '3.7'
 services:
   example-search-service:
-    image: goafabric/example-search-service${ARCH_SUFFIX}:1.0.3-SNAPSHOT
-#    image: goafabric/example-search-service-native:1.0.3-SNAPSHOT
-    container_name: example-search-service
-    restart: always
-    read_only: true
-    environment:
-      - TZ=Europe/Berlin
-      - elasticsearch.url=elasticsearch-search:9200
-      - database.provisioning.goals=-import-demo-data
-#    healthcheck:
-#      test: "curl -f http://localhost:50800/actuator/health || exit 1"
-#      interval: 10s
-#      timeout: 10s
-#      retries: 10
+    container_name: ${_Values_root_name}-application
+    image:  ${_Values_image_repository}${_Values_server_arch}:${_Values_image_tag}
+    #    image: ${_Values_image_repository}-native:${_Values_image_tag}
+    restart: 'no'
+    ports:
+      - "${_Values_service_port}:${_Values_service_port}"
+    entrypoint: ["java","-Xms${_Values_resources_requests_memory}","-Xmx${_Values_resources_requests_memory}","-cp","/app/resources:/app/classes:/app/libs/*","org.goafabric.example.searchservice.Application"]
+    #    command: ["-Xmx${_Values_resources_requests_memory}"]
+
     volumes:
       - tmp:/tmp
       - applogs:/usr/share/logs
-    ports:
-      - 50800:50800
     networks:
-      - search-service-net
+      - ${_Values_root_name}-net
+
+    environment:
+      - TZ=Europe/Berlin
+      - elasticsearch.url=${_Values_root_name}-elasticsearch:9200
+      - database.provisioning.goals=-import-demo-data
     depends_on:
-      - elasticsearch-search
+      elasticsearch-search:
+        condition: service_healthy
 
   elasticsearch-search:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
-    container_name: elasticsearch-search
+    container_name: ${_Values_root_name}-elasticsearch
     restart: always
     read_only: true
     environment:
@@ -52,7 +51,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      -  search-service-net
+      - ${_Values_root_name}-net
 
 volumes:
   tmp:
@@ -65,6 +64,5 @@ volumes:
     driver: local
 
 networks:
-  search-service-net:
+  example-search-service-net:
     driver: bridge
-    name: search-service-net
