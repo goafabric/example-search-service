@@ -12,6 +12,6 @@ public interface PersonMapper {
 
     PersonBo map(Person person);
 
-    List<Person> map(List<PersonBo> countries);
+    List<Person> map(List<PersonBo> persons);
 
 }

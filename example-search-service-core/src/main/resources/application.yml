@@ -20,8 +20,10 @@ management:
 #persistence
 database.provisioning.goals: "-import-demo-data"
 
+#elastic
 elasticsearch.url: "localhost:9200"
 
+#mongodb
 spring:
   data:
     mongodb:
@@ -32,6 +34,16 @@ spring:
       authentication-database: admin
       username: mongodb
       password: mongodb
+
+#postgres
+#spring.datasource.url: jdbc:h2:mem:persondb
+spring.datasource.url: jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username: postgres
+spring.datasource.password: postgres
+
+spring.datasource.initialization-mode: always
+#spring.datasource.schema: classpath*:db/migration/V1__init.sql
+spring.jpa.hibernate.ddl-auto: none
 
 #log levels
 logging.level.root: "WARN"

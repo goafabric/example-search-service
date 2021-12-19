@@ -1,3 +1,5 @@
+drop table if exists address;
+drop table if exists skill;
 drop table if exists person;
 
 create table person
@@ -30,6 +32,6 @@ create table skill
 			primary key,
 	name varchar(255) NULL,
 	description varchar(255) NULL,
-	person_id varchar(36) NOT NULL,
+	person_id varchar(36) NULL,
 	version bigint default 0
 );

@@ -33,7 +33,7 @@ public class PersonBo {
     @NonNull
     private List<SkillBo> skills;
 
-    //what a shoehorn of hoseshit is this ?!?!? i have to do this myself ?!
+    //what a shoehorn of horseshit is this ?!?!? i have to do this myself ?!
     public void setSkills(List<SkillBo> skills) {
         if (skills != null) {
             skills.stream().forEach(skill -> skill.setPerson(this));
