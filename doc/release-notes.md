@@ -1,7 +1,10 @@
 #1.0.3
 - plugin management
-- - upgrade to Spring Boot 2.6.1
+- upgrade to Spring Boot 2.6.1
 - upgrade to Spring Native 0.11
+- 
+- added options to build elastic, mongodb or jpa application
+- added reactive branch
 
 #1.0.2
 - refactoring and bugfixes
