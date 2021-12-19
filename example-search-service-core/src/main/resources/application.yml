@@ -37,7 +37,7 @@ spring:
 
 #postgres
 #spring.datasource.url: jdbc:h2:mem:persondb
-spring.datasource.url: jdbc:postgresql://localhost:5432/postgres
+spring.datasource.url: jdbc:postgresql://localhost:5432/search
 spring.datasource.username: postgres
 spring.datasource.password: postgres
 
@@ -49,7 +49,7 @@ spring.jpa.hibernate.ddl-auto: none
 logging.level.root: "WARN"
 logging.level.org.goafabric: "INFO"
 
-logging.level.org.springframework: "INFO"
+logging.level.org.springframework: "DEBUG"
 logging.level.org.flywaydb.core: "INFO"
 logging.level.org.hibernate.SQL: "DEBUG"
 
