@@ -69,20 +69,18 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=mongodb
 
-  mongoexpress:
-    image: mongo-express:latest
-    container_name: ${_Values_root_name}-mongoexpress
-    ports:
-      - 8081:8081
-    networks:
-      - ${_Values_root_name}-net
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongodb:mongodb@${_Values_root_name}-mongodb
-#      - ME_CONFIG_BASICAUTH_USERNAME=mongodb
-#      - ME_CONFIG_BASICAUTH_PASSWORD=mongodb
-    depends_on:
-      mongodb:
-        condition: service_started
+#  mongoexpress:
+#    image: mongo-express:latest
+#    container_name: ${_Values_root_name}-mongoexpress
+#    ports:
+#      - 8081:8081
+#    networks:
+#      - ${_Values_root_name}-net
+#    environment:
+#      - ME_CONFIG_MONGODB_SERVER=mongodb:mongodb@${_Values_root_name}-mongodb
+#    depends_on:
+#      mongodb:
+#        condition: service_started
 
   postgres:
     container_name: ${_Values_root_name}-postgres
