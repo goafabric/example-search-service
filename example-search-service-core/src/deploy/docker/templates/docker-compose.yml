@@ -68,7 +68,10 @@ services:
       - TZ=Europe/Berlin
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=mongodb
-
+    deploy:
+      resources:
+        limits:
+          memory: 64M
 #  mongoexpress:
 #    image: mongo-express:latest
 #    container_name: ${_Values_root_name}-mongoexpress
