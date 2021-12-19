@@ -20,6 +20,6 @@
 
     <groupId>org.goafabric</groupId>
     <artifactId>example-search-service</artifactId>
-    <version>1.0.3-mongodb-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
 
 </project>
