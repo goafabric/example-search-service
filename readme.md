@@ -17,7 +17,7 @@ docker run -d --name elasticsearch-search --rm -p 9200:9200  -e "discovery.type=
 #mongodb
 docker run -d --name mongodb --rm -p27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongodb -e MONGO_INITDB_ROOT_PASSWORD=mongodb \
 mongo:4.4.5
-#--wiredTigerCacheSizeGB 0.064
+
                          
 #mongoexpress
 docker run  --rm --name mongoexpress -e ME_CONFIG_MONGODB_SERVER=mongodb:mongodb@192.168.4.23 -p 8081:8081 mongo-express
