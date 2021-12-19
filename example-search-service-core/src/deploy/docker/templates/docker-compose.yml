@@ -22,13 +22,13 @@ services:
       - database.provisioning.goals=-import-demo-data
     depends_on:
       elasticsearch-search:
-        condition: service_healthy
+#        condition: service_healthy
+        condition: service_started
 
   elasticsearch-search:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
     container_name: ${_Values_root_name}-elasticsearch
-    restart: always
-    read_only: true
+    restart: 'no'
     environment:
       - TZ=Europe/Berlin
       - ES_JAVA_OPTS=-Xms256m -Xmx256m
@@ -53,6 +53,22 @@ services:
     networks:
       - ${_Values_root_name}-net
 
+  mongodb:
+    image: mongo:4.4.5
+    container_name: ${_Values_root_name}-mongodb
+    restart: 'no'
+    environment:
+      - TZ=Europe/Berlin
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongoconfig:/data/configdb
+      - mongodata:/data/db
+    networks:
+      - ${_Values_root_name}-net
+
 volumes:
   tmp:
   applogs:
@@ -61,6 +77,11 @@ volumes:
   esconfig:
     driver: local
   eslogs:
+    driver: local
+
+  mongoconfig:
+    driver: local
+  mongodata:
     driver: local
 
 networks:
