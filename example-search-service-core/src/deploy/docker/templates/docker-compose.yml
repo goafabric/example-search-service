@@ -29,10 +29,6 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
     container_name: ${_Values_root_name}-elasticsearch
     restart: 'no'
-    environment:
-      - TZ=Europe/Berlin
-      - ES_JAVA_OPTS=-Xms256m -Xmx256m
-      - discovery.type=single-node
     ulimits:
       memlock:
         soft: -1
@@ -52,15 +48,15 @@ services:
       - 9200:9200
     networks:
       - ${_Values_root_name}-net
+    environment:
+      - TZ=Europe/Berlin
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
 
   mongodb:
     image: mongo:4.4.5
     container_name: ${_Values_root_name}-mongodb
     restart: 'no'
-    environment:
-      - TZ=Europe/Berlin
-      - MONGO_INITDB_ROOT_USERNAME=mongodb
-      - MONGO_INITDB_ROOT_PASSWORD=mongodb
     ports:
       - 27017:27017
     volumes:
@@ -68,6 +64,25 @@ services:
       - mongodata:/data/db
     networks:
       - ${_Values_root_name}-net
+    environment:
+      - TZ=Europe/Berlin
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+
+  mongoexpress:
+    image: mongo-express:latest
+    container_name: ${_Values_root_name}-mongoexpress
+    ports:
+      - 8081:8081
+    networks:
+      - ${_Values_root_name}-net
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb:mongodb@${_Values_root_name}-mongodb
+#      - ME_CONFIG_BASICAUTH_USERNAME=mongodb
+#      - ME_CONFIG_BASICAUTH_PASSWORD=mongodb
+    depends_on:
+      mongodb:
+        condition: service_started
 
   postgres:
     container_name: ${_Values_root_name}-postgres
@@ -75,16 +90,16 @@ services:
     restart: 'no'
     ports:
       - 5432:5432
-    environment:
-      - TZ=Europe/Berlin
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=posgres
-      - POSTGRES_DB=search
     command: postgres -c 'shared_buffers=128MB' -c 'max_connections=30' -c 'shared_preload_libraries=pg_stat_statements'
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
       - ${_Values_root_name}-net
+    environment:
+      - TZ=Europe/Berlin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=posgres
+      - POSTGRES_DB=search
 
 volumes:
   tmp:
