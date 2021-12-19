@@ -1,3 +1,7 @@
+#docker compose
+Starting the docker-compose inside -core/src/deploy/docker via ./stack up
+will give you all databases needed
+
 #docker run
 [[ "$(uname -m)" == "arm64"  ]] && ARCH="-arm64v8" && \
 docker pull goafabric/example-search-service${ARCH}:1.0.3-SNAPSHOT && \
