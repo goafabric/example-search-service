@@ -69,6 +69,23 @@ services:
     networks:
       - ${_Values_root_name}-net
 
+  postgres:
+    container_name: ${_Values_root_name}-postgres
+    image: postgres:14.1
+    restart: 'no'
+    ports:
+      - 5432:5432
+    environment:
+      - TZ=Europe/Berlin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=posgres
+      - POSTGRES_DB=search
+    command: postgres -c 'shared_buffers=128MB' -c 'max_connections=30' -c 'shared_preload_libraries=pg_stat_statements'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - ${_Values_root_name}-net
+
 volumes:
   tmp:
   applogs:
@@ -82,6 +99,9 @@ volumes:
   mongoconfig:
     driver: local
   mongodata:
+    driver: local
+
+  pgdata:
     driver: local
 
 networks:
