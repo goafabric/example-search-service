@@ -38,6 +38,11 @@ public class PersonLogic {
                 personRepository.findByLastName(lastName));
     }
 
+    public List<Person> findByCity(String city) {
+        return personMapper.map(
+                personRepository.findByAddress_City(city));
+    }
+
     public Person save(Person person) {
         return personMapper.map(
                 personRepository.save(

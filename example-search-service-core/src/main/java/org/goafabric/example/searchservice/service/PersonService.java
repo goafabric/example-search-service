@@ -42,6 +42,10 @@ public class PersonService {
         return personLogic.findByLastName(lastName);
     }
 
+    @GetMapping("findByCity")
+    public List<Person> findByCity(@RequestParam("city") String city) {
+        return personLogic.findByCity(city);
+    }
 
     @PostMapping(value = "save", consumes = "application/json")
     public Person save(@RequestBody Person person) {
