@@ -1,2 +1,2 @@
-- reactive branch
-- 1:n relation
+- integration tests
+- 1:n oddities for jpa, elastic + mongo
