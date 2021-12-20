@@ -1,3 +1,5 @@
+#1.1.1
+
 #1.1.0
 - plugin management
 - upgrade to Spring Boot 2.6.1
