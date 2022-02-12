@@ -8,10 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.nativex.hint.TypeAccess;
+import org.springframework.nativex.hint.TypeHint;
 
 @Slf4j
 @Configuration(proxyBeanMethods = false)
 @EnableElasticsearchRepositories(basePackages = "org.goafabric.example.searchservice.persistence")
+@TypeHint(types = org.apache.logging.log4j.message.ParameterizedMessageFactory.class, access = {TypeAccess.DECLARED_CLASSES, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.DECLARED_METHODS})
 public class ElasticClientConfig {
     @Value("${elasticsearch.url}")
     private String elasticSearchUrl;
