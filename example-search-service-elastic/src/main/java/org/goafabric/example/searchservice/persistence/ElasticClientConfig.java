@@ -15,6 +15,7 @@ import org.springframework.nativex.hint.TypeHint;
 @Configuration(proxyBeanMethods = false)
 @EnableElasticsearchRepositories(basePackages = "org.goafabric.example.searchservice.persistence")
 @TypeHint(types = org.apache.logging.log4j.message.ParameterizedMessageFactory.class, access = {TypeAccess.DECLARED_CLASSES, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.DECLARED_METHODS})
+@TypeHint(types = org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository.class, access = {TypeAccess.DECLARED_CLASSES, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.DECLARED_METHODS})
 public class ElasticClientConfig {
     @Value("${elasticsearch.url}")
     private String elasticSearchUrl;
