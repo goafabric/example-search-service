@@ -13,8 +13,8 @@
 
     <parent>
         <groupId>org.goafabric</groupId>
-        <artifactId>goa-parent</artifactId>
-        <version>2.6.1</version>
+        <artifactId>spring-parent</artifactId>
+        <version>2.6.3</version>
         <relativePath>parent-pom/pom.xml</relativePath>
     </parent>
 
@@ -22,4 +22,8 @@
     <artifactId>example-search-service</artifactId>
     <version>1.1.1-SNAPSHOT</version>
 
+    <properties>
+        <docker.baseimage.multi>ibm-semeru-runtimes:open-17.0.2_8-jre-focal@sha256:727543ea31c493f0f4405d553d4cb28068fd38200c7d3d3962d691aa91a24d55</docker.baseimage.multi>
+        <java.version>17</java.version>
+    </properties>
 </project>
