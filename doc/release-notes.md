@@ -1,3 +1,15 @@
+#1.1.1
+- upgrade to Spring Boot 2.6.4
+- upgrade to Spring Native 0.11.3
+- update to OpenAPI 1.6.4 + JIB 3.2.0 
+- upgrade to Lombok 1.18.22
+
+- Java 17 IBM Semeru Runtime for JVM Images
+- Java 17 Compiler Level and Native Image
+- Multi Arch JVM Images
+                           
+- Native Image should now work again
+
 #1.1.0
 - plugin management
 - upgrade to Spring Boot 2.6.1
