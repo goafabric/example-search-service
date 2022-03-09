@@ -7,6 +7,8 @@
 - Java 17 IBM Semeru Runtime for JVM Images
 - Java 17 Compiler Level and Native Image
 - Multi Arch JVM Images
+                           
+- Native Image should now work again
 
 #1.1.0
 - plugin management
