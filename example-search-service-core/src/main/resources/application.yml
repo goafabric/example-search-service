@@ -42,8 +42,8 @@ spring.datasource.url: jdbc:postgresql://localhost:5432/search
 spring.datasource.username: postgres
 spring.datasource.password: postgres
 
-spring.datasource.initialization-mode: always
-#spring.datasource.schema: classpath*:db/migration/V1__init.sql
+spring.sql.init.mode: always
+#spring.sql.init.schema-locations: classpath*:db/migration/V1__init.sql
 spring.jpa.hibernate.ddl-auto: none
 
 #log levels
