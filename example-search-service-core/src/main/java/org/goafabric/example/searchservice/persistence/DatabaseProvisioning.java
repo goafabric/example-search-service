@@ -1,7 +1,7 @@
 package org.goafabric.example.searchservice.persistence;
 
 import lombok.extern.slf4j.Slf4j;
-import org.goafabric.example.searchservice.crossfunctional.TenantIdInterceptor;
+import org.goafabric.example.searchservice.crossfunctional.HttpInterceptor;
 import org.goafabric.example.searchservice.logic.PersonLogic;
 import org.goafabric.example.searchservice.service.Address;
 import org.goafabric.example.searchservice.service.Person;
@@ -48,7 +48,7 @@ public class DatabaseProvisioning {
     }
 
     private void createDemoData(String tenantId) {
-        TenantIdInterceptor.setTenantId(tenantId);
+        HttpInterceptor.setTenantId(tenantId);
         personLogic.save(Person.builder()
                 .firstName("Homer").lastName("Simpson")
                 .address(createAddress("Evergreen Terace 1"))
