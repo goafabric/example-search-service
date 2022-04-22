@@ -4,7 +4,7 @@ _Values_app_name=${_Values_root_name}-application
 _Values_ingress_name=search
 
 _Values_image_repository=goafabric/example-search-service
-_Values_image_tag=1.1.2-SNAPSHOT
+_Values_image_tag=1.1.2
 
 _Values_service_type=ClusterIP
 _Values_service_port=8080
