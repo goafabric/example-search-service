@@ -4,12 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>example-search-service-core</module>
-        <module>example-search-service-mongo</module>
-        <module>example-search-service-elastic</module>
-        <module>example-search-service-jpa</module>
-    </modules>
 
     <parent>
         <groupId>org.goafabric</groupId>
@@ -26,6 +20,13 @@
         <docker.baseimage.multi>ibm-semeru-runtimes:open-17.0.2_8-jre-focal@sha256:727543ea31c493f0f4405d553d4cb28068fd38200c7d3d3962d691aa91a24d55</docker.baseimage.multi>
         <java.version>17</java.version>
     </properties>
+
+    <modules>
+        <module>example-search-service-core</module>
+        <module>example-search-service-mongo</module>
+        <module>example-search-service-elastic</module>
+        <module>example-search-service-jpa</module>
+    </modules>
 
     <dependencies>
         <!-- native -->
