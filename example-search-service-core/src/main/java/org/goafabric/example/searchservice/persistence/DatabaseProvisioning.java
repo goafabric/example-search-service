@@ -43,7 +43,7 @@ public class DatabaseProvisioning {
         personLogic.deleteAll();
         if (!personLogic.findAll().iterator().hasNext()) {
             createDemoData("0");
-            createDemoData("5a2f");
+            //createDemoData("5a2f");
         }
     }
 
