@@ -4,10 +4,8 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
+@Value
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Person {
     private String id;
 
