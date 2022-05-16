@@ -2,7 +2,7 @@ package org.goafabric.example.searchservice.logic;
 
 import org.goafabric.example.searchservice.persistence.PersonBo;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
-import org.goafabric.example.searchservice.service.Person;
+import org.goafabric.example.searchservice.service.dto.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

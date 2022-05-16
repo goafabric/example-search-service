@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.service;
+package org.goafabric.example.searchservice.service.dto;
 
 import lombok.*;
 
