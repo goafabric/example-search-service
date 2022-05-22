@@ -29,7 +29,7 @@ public class PersonBo {
     @NonNull
     private AddressBo address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "myPerson")
+    @OneToMany(mappedBy = "myPerson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @NonNull
     private List<SkillBo> skills;
 
