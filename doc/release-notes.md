@@ -1,3 +1,5 @@
+#1.1.4
+
 #1.1.3
 - upgrade to Spring Boot 2.7.0
 - upgrade to JDK 17.0.3
