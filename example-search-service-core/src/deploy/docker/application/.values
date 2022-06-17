@@ -1,7 +1,7 @@
 _Values_root_name="example-search-service"
 
 _Values_image_repository=goafabric/example-search-service-core
-_Values_image_tag=1.1.3-SNAPSHOT
+_Values_image_tag=1.1.3
 
 _Values_service_port=50800
 _Values_resources_requests_memory=128M
