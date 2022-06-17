@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  example-search-service:
+    container_name: ${_Values_root_name}-application
+    image:  ${_Values_image_repository}${_Values_image_native}:${_Values_image_tag}
+    restart: 'no'
+    ports:
+      - "${_Values_service_port}:${_Values_service_port}"
+    command: ["-Xmx${_Values_resources_requests_memory}"]
+
+    volumes:
+      - tmp:/tmp
+      - applogs:/usr/share/logs
+    networks:
+      - ${_Values_root_name}-net
+
+    environment:
+      - TZ=Europe/Berlin
+      - elasticsearch.url=host.docker.internal:9200
+      - database.provisioning.goals=-import-demo-data
+
+volumes:
+  tmp:
+  applogs:
+
+networks:
+  example-search-service-net:
+    driver: bridge

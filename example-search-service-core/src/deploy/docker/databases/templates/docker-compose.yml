@@ -84,5 +84,5 @@ volumes:
     driver: local
 
 networks:
-  example-search-service-net:
+  example-search-database-net:
     driver: bridge

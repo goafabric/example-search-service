@@ -26,6 +26,6 @@ public class SkillBo {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private PersonBo person;
+    @JoinColumn(name = "person_id")
+    private PersonBo myPerson;
 }

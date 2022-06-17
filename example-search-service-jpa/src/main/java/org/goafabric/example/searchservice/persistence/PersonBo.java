@@ -24,19 +24,19 @@ public class PersonBo {
     @Column(name = "last_name")
     private String lastName;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     @NonNull
     private AddressBo address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "person")
+    @OneToMany(mappedBy = "myPerson", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @NonNull
     private List<SkillBo> skills;
 
     //what a shoehorn of horseshit is this ?!?!? i have to do this myself ?!
     public void setSkills(List<SkillBo> skills) {
         if (skills != null) {
-            skills.stream().forEach(skill -> skill.setPerson(this));
+            skills.stream().forEach(skill -> skill.setMyPerson(this));
             this.skills = skills;
         }
     }
