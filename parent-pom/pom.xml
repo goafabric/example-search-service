@@ -432,7 +432,7 @@
                                 <!--
                                 <execution>
                                     <id>integrity</id>
-                                    <phase>deploy</phase>
+                                    <phase>verify</phase>
                                     <goals>
                                         <goal>exec</goal>
                                     </goals>
