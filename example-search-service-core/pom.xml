@@ -143,7 +143,7 @@
                                             <color>yellow</color>
                                         </log>
                                         <wait>
-                                            <time>180000</time><!-- 60 seconds max -->
+                                            <time>600000</time><!-- 60 seconds max -->
                                             <log>.*"message": "started".*</log>
                                         </wait>
                                     </run>

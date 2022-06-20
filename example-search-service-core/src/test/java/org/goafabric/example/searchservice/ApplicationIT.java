@@ -1,3 +1,4 @@
+/*
 package org.goafabric.example.searchservice;
 
 import org.junit.jupiter.api.Test;
@@ -12,3 +13,4 @@ public class ApplicationIT {
         SpringApplication.run(Application.class, "");
     }
 }
+*/
