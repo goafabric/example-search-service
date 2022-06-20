@@ -429,7 +429,6 @@
                             <artifactId>exec-maven-plugin</artifactId>
                             <version>${exec-maven-plugin.version}</version>
                             <executions>
-                                <!--
                                 <execution>
                                     <id>integrity</id>
                                     <phase>integration-test</phase>
@@ -446,7 +445,6 @@
                                         </arguments>
                                     </configuration>
                                 </execution>
-                                -->
                                 <execution>
                                     <id>docker push</id>
                                     <phase>deploy</phase>

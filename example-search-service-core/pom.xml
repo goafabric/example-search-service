@@ -96,6 +96,63 @@
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.40.1</version>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <watchInterval>500</watchInterval>
+                            <logDate>default</logDate>
+                            <verbose>true</verbose>
+                            <images>
+                                <image>
+                                    <name>docker.elastic.co/elasticsearch/elasticsearch:7.17.3</name>
+                                    <run>
+                                        <ports>
+                                            <port>9200:9200</port>
+                                            <port>9300:9300</port>
+                                        </ports>
+                                        <env>
+                                            <!-- specify single-node discovery to bypass the bootstrap checks -->
+                                            <discovery.type>single-node</discovery.type>
+                                            <ES_JAVA_OPTS>-Xms256m -Xmx256m</ES_JAVA_OPTS>
+                                        </env>
+                                        <log>
+                                            <prefix>Elasticsearch:</prefix>
+                                            <enabled>true</enabled>
+                                            <color>yellow</color>
+                                        </log>
+                                        <wait>
+                                            <time>180000</time><!-- 60 seconds max -->
+                                            <log>.*"message": "started".*</log>
+                                        </wait>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
