@@ -23,11 +23,4 @@
         <module>example-search-service-jpa</module>
     </modules>
 
-    <dependencies>
-        <!-- native -->
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-        </dependency>
-    </dependencies>
 </project>
