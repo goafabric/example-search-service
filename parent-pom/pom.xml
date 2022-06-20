@@ -439,6 +439,7 @@
                                         <executable>docker</executable>
                                         <arguments>
                                             <argument>run</argument>
+                                            <argument>-e elasticsearch.url=172.17.0.1:9200</argument>
                                             <argument>${docker.registry}/${project.artifactId}-native:${project.version}
                                             </argument>
                                             <argument>-check-integrity</argument>
