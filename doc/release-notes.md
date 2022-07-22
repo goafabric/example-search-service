@@ -1,5 +1,5 @@
 #1.1.4
-- upgrade to Spring Boot 2.7.1
+- upgrade to Spring Boot 2.7.2
 - upgrade to Spring Boot 0.12.1
 
 #1.1.3
