@@ -8,13 +8,13 @@
     <parent>
         <groupId>org.goafabric</groupId>
         <artifactId>spring-parent</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.2</version>
         <relativePath>parent-pom/pom.xml</relativePath>
     </parent>
 
     <groupId>org.goafabric</groupId>
     <artifactId>example-search-service</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
+    <version>1.1.4-SNAPSHOT</version>
     
     <modules>
         <module>example-search-service-core</module>
@@ -23,11 +23,4 @@
         <module>example-search-service-jpa</module>
     </modules>
 
-    <dependencies>
-        <!-- native -->
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-        </dependency>
-    </dependencies>
 </project>
