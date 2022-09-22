@@ -1,7 +1,10 @@
+# 2.0.1
+- upgrade to Spring Boot 2.7.4
+
 # 2.0.0
 - Parity with Spring Boot Version
 
-- upgrade to Spring Boot 2.7.3
+- upgrade to Spring Boot 2.7.4
 - upgrade to Spring Boot 0.12.1
 
 # 1.1.3
