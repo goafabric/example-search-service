@@ -100,7 +100,7 @@
             </dependencies>
 
             <properties>
-                <spring.native.check.integrity.argument>-e elasticsearch.url=172.17.0.1:9200</spring.native.check.integrity.argument>
+                <spring.native.check.integrity.argument>-e spring.elasticsearch.uris=172.17.0.1:9200</spring.native.check.integrity.argument>
             </properties>
             <build>
                 <plugins>
