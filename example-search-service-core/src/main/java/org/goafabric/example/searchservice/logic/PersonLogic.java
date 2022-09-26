@@ -4,6 +4,7 @@ import org.goafabric.example.searchservice.persistence.PersonBo;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
 import org.goafabric.example.searchservice.service.dto.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,12 +21,12 @@ public class PersonLogic {
 
     public Person getById(String id) {
         return personMapper.map(
-                personRepository.findById(id).get());
+                personRepository.findById(id));
     }
 
     public List<Person> findAll() {
         return personMapper.map(
-                StreamSupport.stream(personRepository.findAll().spliterator(), false)
+                StreamSupport.stream(personRepository.findAll(Sort.unsorted()).spliterator(), false)
                         .collect(Collectors.toList()));
     }
 
@@ -48,13 +49,13 @@ public class PersonLogic {
     public Person save(Person person) {
         final PersonBo personBo = personMapper.map(person);
         personBo.setSkills(personBo.getSkills());
-        return personMapper.map(
-                personRepository.save(
-                        personBo));
+        return personMapper.map(personBo);
+                //personRepository.save(
+                  //      personBo));
     }
 
     public void deleteAll() {
-        personRepository.deleteAll();
+        //personRepository.deleteAll();
     }
 
 }

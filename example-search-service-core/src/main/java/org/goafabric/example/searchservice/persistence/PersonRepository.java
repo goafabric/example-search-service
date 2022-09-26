@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PersonRepository extends PagingAndSortingRepository<PersonBo, String> {
+    PersonBo findById(String id);
     List<PersonBo> findByFirstName(String firstName);
     List<PersonBo> findByLastName(String lastName);
 
