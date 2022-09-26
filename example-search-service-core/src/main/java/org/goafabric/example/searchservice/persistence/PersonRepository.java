@@ -1,12 +1,11 @@
 package org.goafabric.example.searchservice.persistence;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PersonRepository extends PagingAndSortingRepository<PersonBo, String> {
-    PersonBo findById(String id);
+public interface PersonRepository extends CrudRepository<PersonBo, String> {
     List<PersonBo> findByFirstName(String firstName);
     List<PersonBo> findByLastName(String lastName);
 
