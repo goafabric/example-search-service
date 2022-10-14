@@ -18,9 +18,7 @@
     
     <modules>
         <module>example-search-service-core</module>
-        <module>example-search-service-mongo</module>
-        <module>example-search-service-elastic</module>
-        <module>example-search-service-jpa</module>
+
     </modules>
     
     <properties>
