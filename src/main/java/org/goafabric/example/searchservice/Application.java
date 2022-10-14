@@ -54,6 +54,7 @@ public class Application {
             registerReflection(org.springframework.data.elasticsearch.core.event.AfterLoadCallback.class, hints);
 
             registerReflection(org.apache.http.impl.auth.BasicScheme.class, hints);
+            registerFields(org.apache.http.impl.auth.BasicScheme.class, hints);
         }
 
         private void registerReflection(Class clazz, RuntimeHints hints) {
@@ -61,6 +62,11 @@ public class Application {
                     r -> hints.reflection().registerConstructor(r, ExecutableMode.INVOKE));
             Arrays.stream(clazz.getDeclaredMethods()).forEach(
                     r -> hints.reflection().registerMethod(r, ExecutableMode.INVOKE));
+        }
+
+        private void registerFields(Class clazz, RuntimeHints hints) {
+            Arrays.stream(clazz.getDeclaredFields()).forEach(
+                    r -> hints.reflection().registerField(r));
         }
 
     }
