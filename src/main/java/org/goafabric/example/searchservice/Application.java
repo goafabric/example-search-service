@@ -1,7 +1,7 @@
 package org.goafabric.example.searchservice;
 
 import org.goafabric.example.searchservice.persistence.DatabaseProvisioning;
-import org.springframework.aot.hint.ExecutableMode;
+import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.boot.CommandLineRunner;
@@ -39,7 +39,9 @@ public class Application {
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
             //Logger and ExceptionHandler
-            registerReflection(org.goafabric.example.searchservice.crossfunctional.ExceptionHandler.class, hints);
+            hints.reflection().registerType(org.goafabric.example.searchservice.crossfunctional.TenantIdBean.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+
 
             registerReflection(org.goafabric.example.searchservice.crossfunctional.TenantIdBean.class, hints);
 
@@ -53,15 +55,23 @@ public class Application {
             registerReflection(org.springframework.data.elasticsearch.core.event.AfterSaveCallback.class, hints);
             registerReflection(org.springframework.data.elasticsearch.core.event.AfterLoadCallback.class, hints);
 
-            registerReflection(org.apache.http.impl.auth.BasicScheme.class, hints);
-            registerFields(org.apache.http.impl.auth.BasicScheme.class, hints);
+            hints.reflection().registerType(org.apache.http.impl.auth.BasicScheme.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+
+            //persistence
+            hints.reflection().registerType(org.goafabric.example.searchservice.persistence.AddressBo.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+
+            hints.reflection().registerType(org.goafabric.example.searchservice.persistence.PersonBo.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+
+            hints.reflection().registerType(org.goafabric.example.searchservice.persistence.SkillBo.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
         }
 
         private void registerReflection(Class clazz, RuntimeHints hints) {
-            Arrays.stream(clazz.getDeclaredConstructors()).forEach(
-                    r -> hints.reflection().registerConstructor(r, ExecutableMode.INVOKE));
-            Arrays.stream(clazz.getDeclaredMethods()).forEach(
-                    r -> hints.reflection().registerMethod(r, ExecutableMode.INVOKE));
+            hints.reflection().registerType(clazz,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
         }
 
         private void registerFields(Class clazz, RuntimeHints hints) {
