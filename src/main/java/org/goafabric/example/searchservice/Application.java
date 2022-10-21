@@ -42,10 +42,6 @@ public class Application {
             hints.reflection().registerType(org.goafabric.example.searchservice.crossfunctional.TenantIdBean.class,
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
 
-
-            registerReflection(org.goafabric.example.searchservice.crossfunctional.TenantIdBean.class, hints);
-
-
             //elastic
             registerReflection(org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository.class, hints);
             registerReflection(org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.class, hints);
