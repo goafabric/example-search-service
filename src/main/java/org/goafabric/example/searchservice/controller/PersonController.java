@@ -1,8 +1,8 @@
-package org.goafabric.example.searchservice.service;
+package org.goafabric.example.searchservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.logic.PersonLogic;
-import org.goafabric.example.searchservice.service.dto.Person;
+import org.goafabric.example.searchservice.controller.dto.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-public class PersonService {
+public class PersonController {
     @Autowired
     private PersonLogic personLogic;
 
