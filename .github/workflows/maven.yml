@@ -22,4 +22,4 @@ jobs:
     - name: JVM Build
       run: mvn -B clean deploy -P docker-image --file pom.xml
     - name: Native Build
-      run: mvn -B clean deploy -P docker-image-native,persistence-elastic --file pom.xml
+      run: mvn -B clean deploy -P docker-image-native,docker-image-native-amd64,persistence-elastic --file pom.xml
