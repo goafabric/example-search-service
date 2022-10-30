@@ -1,8 +1,6 @@
 server:
   port: 50800
-  tomcat:
-    threads:
-      max: 20
+  tomcat.threads.max: 20
 
 ## actuator section
 management:
