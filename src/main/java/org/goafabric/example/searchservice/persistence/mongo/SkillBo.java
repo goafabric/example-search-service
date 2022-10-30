@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence;
+package org.goafabric.example.searchservice.persistence.mongo;
 
 
 import lombok.AllArgsConstructor;
@@ -6,13 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "#{@tenantIdBean.getPrefix()}skill")
+@Document("#{@tenantIdBean.getPrefix()}skill")
 public class SkillBo {
     @Id
     private String id;

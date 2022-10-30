@@ -11,8 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportRuntimeHints;
 
-import java.util.Arrays;
-
 /**
  * Created by amautsch on 26.06.2015.
  */
@@ -38,11 +36,10 @@ public class Application {
 
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
-            //Logger and ExceptionHandler
             hints.reflection().registerType(org.goafabric.example.searchservice.crossfunctional.TenantIdBean.class,
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
 
-            //elastic
+            /*
             registerReflection(org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository.class, hints);
             registerReflection(org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.class, hints);
 
@@ -53,18 +50,9 @@ public class Application {
 
             hints.reflection().registerType(org.apache.http.impl.auth.BasicScheme.class,
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
-            
+            */
         }
 
-        private void registerReflection(Class clazz, RuntimeHints hints) {
-            hints.reflection().registerType(clazz,
-                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
-        }
-
-        private void registerFields(Class clazz, RuntimeHints hints) {
-            Arrays.stream(clazz.getDeclaredFields()).forEach(
-                    r -> hints.reflection().registerField(r));
-        }
 
     }
 

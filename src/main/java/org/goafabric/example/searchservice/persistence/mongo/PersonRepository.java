@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence;
+package org.goafabric.example.searchservice.persistence.mongo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
