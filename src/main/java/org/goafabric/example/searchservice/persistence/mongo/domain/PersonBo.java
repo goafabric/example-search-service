@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence.mongo;
+package org.goafabric.example.searchservice.persistence.mongo.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
