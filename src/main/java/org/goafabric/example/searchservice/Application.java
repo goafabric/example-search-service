@@ -1,5 +1,6 @@
 package org.goafabric.example.searchservice;
 
+import org.goafabric.example.searchservice.persistence.DatabaseProvisioning;
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;

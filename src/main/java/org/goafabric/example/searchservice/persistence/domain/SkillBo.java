@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence;
+package org.goafabric.example.searchservice.persistence.domain;
 
 
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice;
+package org.goafabric.example.searchservice.persistence;
 
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.controller.dto.Address;
