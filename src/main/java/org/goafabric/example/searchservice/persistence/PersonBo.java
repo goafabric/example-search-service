@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @org.springframework.data.mongodb.core.mapping.Document("#{@tenantIdBean.getPrefix()}person")
-//@org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person")
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person")
 public class PersonBo {
     @Id
     private String id;
