@@ -1,11 +1,10 @@
-package org.goafabric.example.searchservice.persistence.elastic.domain;
+package org.goafabric.example.searchservice.persistence;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
@@ -15,7 +14,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "#{@tenantIdBean.getPrefix()}person")
+@org.springframework.data.mongodb.core.mapping.Document("#{@tenantIdBean.getPrefix()}person")
+//@org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person")
 public class PersonBo {
     @Id
     private String id;
