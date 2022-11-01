@@ -58,7 +58,8 @@ public class Application {
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
             hints.reflection().registerType(org.apache.http.impl.auth.BasicScheme.class,
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
-            */
+
+             */
         }
 
 
