@@ -1,13 +1,13 @@
-package org.goafabric.example.searchservice.persistence.mongo;
+package org.goafabric.example.searchservice.persistence.elastic;
 
-import org.goafabric.example.searchservice.persistence.mongo.domain.PersonBo;
+import org.goafabric.example.searchservice.persistence.elastic.domain.PersonBo;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-@Profile("mongo")
+@Profile("elastic")
 public interface PersonRepository extends CrudRepository<PersonBo, String> {
     List<PersonBo> findByFirstName(String firstName);
     List<PersonBo> findByLastName(String lastName);
