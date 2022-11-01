@@ -42,14 +42,20 @@ public class Application {
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
 
             /*
-            registerReflection(org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository.class, hints);
-            registerReflection(org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.class, hints);
-
-            registerReflection(org.springframework.data.elasticsearch.core.event.BeforeConvertCallback.class, hints);
-            registerReflection(org.springframework.data.elasticsearch.core.event.AfterConvertCallback.class, hints);
-            registerReflection(org.springframework.data.elasticsearch.core.event.AfterSaveCallback.class, hints);
-            registerReflection(org.springframework.data.elasticsearch.core.event.AfterLoadCallback.class, hints);
-
+            hints.reflection().registerType(org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.boot.actuate.elasticsearch.ElasticsearchRestClientHealthIndicator.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.data.elasticsearch.core.event.BeforeConvertCallback.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.data.elasticsearch.core.event.AfterConvertCallback.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.data.elasticsearch.core.event.AfterSaveCallback.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+            hints.reflection().registerType(org.springframework.data.elasticsearch.core.event.AfterLoadCallback.class,
+                    MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
             hints.reflection().registerType(org.apache.http.impl.auth.BasicScheme.class,
                     MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
             */
