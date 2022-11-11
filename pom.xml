@@ -14,9 +14,8 @@
     <version>3.0.0-RC1</version>
 
     <properties>
-        <spring.boot.version>3.0.0-RC1</spring.boot.version>
+        <spring.boot.version>${spring.boot-3.version}</spring.boot.version>
         <spring.cloud.version>2022.0.0-RC1</spring.cloud.version>
-        <springdoc-openapi-ui.version>2.0.0-RC1</springdoc-openapi-ui.version>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
@@ -93,10 +92,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.springframework.experimental</groupId>
-                        <artifactId>spring-aot-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <executions>
@@ -106,7 +101,8 @@
                                 <configuration>
                                     <image>
                                         <buildpacks>
-                                            <buildpack>gcr.io/paketo-buildpacks/java-native-image:7.33.0</buildpack>
+                                            <buildpack>${spring.native.buildpack.version}</buildpack>
+                                            <buildpack>gcr.io/paketo-buildpacks/java-native-image</buildpack>
                                         </buildpacks>
                                     </image>
                                 </configuration>
@@ -125,10 +121,6 @@
             <properties><archSuffix>-arm64v8</archSuffix></properties>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.springframework.experimental</groupId>
-                        <artifactId>spring-aot-maven-plugin</artifactId>
-                    </plugin>
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
