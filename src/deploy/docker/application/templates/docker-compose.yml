@@ -17,6 +17,7 @@ services:
     environment:
       - TZ=Europe/Berlin
       - elasticsearch.url=host.docker.internal:9200
+      - spring.data.mongodb.host=host.docker.internal
       - database.provisioning.goals=-import-demo-data
 
 volumes:
