@@ -78,13 +78,6 @@ jib {
 	container.jvmFlags = ['-Xms256m', '-Xmx256m']
 }
 
-tasks.named('bootBuildImage') {
-	builder = 'paketobuildpacks/builder:tiny'
-	buildpacks = ["gcr.io/paketo-buildpacks/java-native-image:7.23.0"]
-	bootBuildImage.imageName = "${dockerRegistry}/${project.name}-native:${project.version}"
-	environment = ['BP_NATIVE_IMAGE': 'true', 'BP_JVM_VERSION': '17', 'BP_NATIVE_IMAGE_BUILD_ARGUMENTS': '-J-Xmx6000m']
-}
-
 def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
 tasks.named('bootBuildImage') {
 	if (archSuffix == '-arm64v8') { builder = 'dashaun/java-native-builder-arm64:7.37.0' } else { buildpacks = ['gcr.io/paketo-buildpacks/java-native-image:7.37.0'] }
