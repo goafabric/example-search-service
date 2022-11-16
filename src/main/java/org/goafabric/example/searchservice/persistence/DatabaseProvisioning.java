@@ -31,6 +31,7 @@ public class DatabaseProvisioning {
         if (goals.contains("-import-demo-data")) {
             log.info("Importing demo data ...");
             importDemoData();
+            log.info("Demo data import done ...");
         }
 
         if (goals.contains("-terminate")) {
@@ -40,7 +41,7 @@ public class DatabaseProvisioning {
     }
 
     private void importDemoData() {
-        personLogic.deleteAll();
+        HttpInterceptor.setTenantId("0");
         if (!personLogic.findAll().iterator().hasNext()) {
             createDemoData("0");
             //createDemoData("5a2f");
