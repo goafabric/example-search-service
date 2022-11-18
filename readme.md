@@ -4,12 +4,12 @@ will give you all databases needed
 
 # docker run
 [[ "$(uname -m)" == "arm64"  ]] && ARCH="-arm64v8" && \
-docker pull goafabric/example-search-service${ARCH}:3.0.0-RC2 && \
-docker run --name example-search-service --rm -p50800:50800 -e "elasticsearch.url=172.17.0.1:9200" goafabric/example-search-service${ARCH}:3.0.0-RC2
+docker pull goafabric/example-search-service${ARCH}:3.0.0-RC3 && \
+docker run --name example-search-service --rm -p50800:50800 -e "elasticsearch.url=172.17.0.1:9200" goafabric/example-search-service${ARCH}:3.0.0-RC3
 
 # docker run native
-docker pull goafabric/example-search-service-native:3.0.0-RC2 && \
-docker run --name example-search-service --rm -p50800:50800 -e "elasticsearch.url=172.17.0.1:9200" goafabric/example-search-service-native:3.0.0-RC2 -Xmx64m
+docker pull goafabric/example-search-service-native:3.0.0-RC3 && \
+docker run --name example-search-service --rm -p50800:50800 -e "elasticsearch.url=172.17.0.1:9200" goafabric/example-search-service-native:3.0.0-RC3 -Xmx64m
 
 # elastic
 docker run -d --name elasticsearch-search --rm -p 9200:9200  -e "discovery.type=single-node" -e "xpack.security.enabled=false" -e "ES_JAVA_OPTS=-Xmx256m" docker.elastic.co/elasticsearch/elasticsearch:8.4.3
