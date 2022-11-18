@@ -15,8 +15,6 @@ import org.springframework.context.annotation.ImportRuntimeHints;
  * Created by amautsch on 26.06.2015.
  */
 
-//@SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration.class, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration.class})
-//@SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration.class, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration.class})
 @SpringBootApplication
 @ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
 public class Application {
