@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -46,15 +47,13 @@ public class DatabaseProvisioning {
         try {
             dataExists = personLogic.findAll().iterator().hasNext();
         }
-        catch (Exception e) {
-            log.warn("Error on search maybe index does not exist on first run ? :", e.getCause());
-        }
+        catch (DataAccessException e) {} //happens on first elastic run
 
         if (!dataExists) {
             createDemoData("0");
             createDemoData("5a2f");
         } else {
-            log.info("Data already exists");
+            log.info("Demo data already exists, skipping import ...");
         }
     }
 
