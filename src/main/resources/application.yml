@@ -7,13 +7,10 @@ management:
     endpoints:
       web:
         exposure:
-          include: "info,health,heapdump,prometheus,circuitbreakers,circuitbreakerevents"
+          include: "info,health,heapdump,prometheus"
     endpoint:
       health:
         show-details: always
-    health:
-      circuitbreakers:
-        enabled: true
 
 #persistence
 database.provisioning.goals: "-import-demo-data"
@@ -24,30 +21,21 @@ spring:
     #mongodb
     mongodb:
       port: 27017
-      min-connections-per-host: 10
-      max-connections-per-host: 100
-      
       authentication-database: admin
       database: search
       username: mongodb
       password: mongodb
+
   #elastic
   elasticsearch:
     uris:
       - http://localhost:9200
 
-#postgres
-spring.datasource.url: jdbc:h2:mem:search
-#spring.datasource.url: jdbc:postgresql://localhost:5432/search
-spring.datasource.username: postgres
-spring.datasource.password: postgres
+#activate mongodb or elasticsearch by excluding the other
+elastic.configuration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"
+mongodb.configuration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 
-spring.datasource.hikari.maximum-pool-size: "10"
-spring.datasource.hikari.connection-timeout: "1000"
-
-spring.sql.init.mode: always
-#spring.sql.init.schema-locations: classpath*:db/migration/V1__init.sql
-spring.jpa.hibernate.ddl-auto: none
+spring.autoconfigure.exclude: ${elastic.configuration}
 
 #log levels
 logging.level.root: "WARN"
@@ -57,5 +45,3 @@ logging.level.org.springframework: "INFO"
 logging.level.org.flywaydb.core: "INFO"
 logging.level.org.hibernate.SQL: "DEBUG"
 
-#spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
-spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
