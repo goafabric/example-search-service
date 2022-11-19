@@ -41,10 +41,20 @@ public class DatabaseProvisioning {
     }
 
     private void importDemoData() {
-        //HttpInterceptor.setTenantId("0");
-        if (!personLogic.findAll().iterator().hasNext()) {
+        HttpInterceptor.setTenantId("0");
+        boolean dataExists = false;
+        try {
+            dataExists = personLogic.findAll().iterator().hasNext();
+        }
+        catch (Exception e) {
+            log.warn("Error on search maybe index does not exist on first run ? :", e.getCause());
+        }
+
+        if (!dataExists) {
             createDemoData("0");
-            //createDemoData("5a2f");
+            createDemoData("5a2f");
+        } else {
+            log.info("Data already exists");
         }
     }
 
