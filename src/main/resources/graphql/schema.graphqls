@@ -9,6 +9,13 @@ type Mutation {
   save(person: PersonInput): Person
 }
 
+type Person {
+  id: String
+  address: Address!
+  skills: [Skill]
+  firstName: String!
+  lastName: String!
+}
 
 type Address {
   id: String
@@ -16,13 +23,19 @@ type Address {
   street: String
 }
 
-type Person {
+type Skill {
   id: String
-  address: Address
+  name: String
+  description: String
+}
+
+input PersonInput {
+  id: String
+  address: AddressInput
+  skills: [SkillInput]
   firstName: String!
   lastName: String!
 }
-
 
 input AddressInput {
   id: String
@@ -30,9 +43,8 @@ input AddressInput {
   street: String
 }
 
-input PersonInput {
+input SkillInput {
   id: String
-  address: AddressInput
-  firstName: String!
-  lastName: String!
+  name: String
+  description: String
 }

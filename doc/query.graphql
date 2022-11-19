@@ -7,16 +7,21 @@ query {
             city
             street
         }
+        skills {
+            id
+            name
+            description
+        }
     }
 }
 
 mutation {
     save(person : {
-        firstName: "lisa"
-        lastName: "simpson"
+        firstName: "Lisa"
+        lastName: "Simpson"
         address: {
-            city: "springfield"
-            street: "evergreen terrace"
+            city: "Springfield"
+            street: "Evergreen Terrace"
         }
     }) {
         id
