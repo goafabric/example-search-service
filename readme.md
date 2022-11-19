@@ -1,5 +1,7 @@
 # docker compose
 go to /src/deploy/docker and do "./stack up"
+                                                       
+databases and application are seperated
 
 # run jvm multi image
 docker pull goafabric/example-search-service:3.0.0-RC3 && docker run --name example-search-service --rm -p50900:50900 goafabric/example-search-service:3.0.0-RC3
