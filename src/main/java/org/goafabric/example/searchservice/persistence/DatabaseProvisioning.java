@@ -41,7 +41,7 @@ public class DatabaseProvisioning {
     }
 
     private void importDemoData() {
-        HttpInterceptor.setTenantId("0");
+        //HttpInterceptor.setTenantId("0");
         if (!personLogic.findAll().iterator().hasNext()) {
             createDemoData("0");
             //createDemoData("5a2f");

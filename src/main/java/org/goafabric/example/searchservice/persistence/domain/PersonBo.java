@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
@@ -24,9 +22,9 @@ public class PersonBo {
 
     private String lastName;
 
-    @Field(type = FieldType.Nested, includeInParent = true)
+    //@Field(type = FieldType.Nested, includeInParent = true)
     private AddressBo address;
 
-    @Field(type = FieldType.Nested, includeInParent = true)
+    //@Field(type = FieldType.Nested, includeInParent = true)
     private List<SkillBo> skills;
 }
