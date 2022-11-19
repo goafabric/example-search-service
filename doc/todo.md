@@ -1,2 +1,0 @@
-- integration tests
-- 1:n oddities for jpa, elastic + mongo

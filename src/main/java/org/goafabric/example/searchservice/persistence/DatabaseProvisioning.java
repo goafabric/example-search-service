@@ -61,13 +61,13 @@ public class DatabaseProvisioning {
         HttpInterceptor.setTenantId(tenantId);
         personLogic.save(Person.builder()
                 .firstName("Homer").lastName("Simpson")
-                .address(createAddress("Evergreen Terace 1"))
+                .address(createAddress("Evergreen Terace " + tenantId))
                 .skills(createSkills())
                 .build());
 
         personLogic.save(Person.builder()
                 .firstName("Bart").lastName("Simpson")
-                .address(createAddress("Everblue Terace 1"))
+                .address(createAddress("Everblue Terace " + tenantId))
                 .skills(createSkills())
                 .build());
 
