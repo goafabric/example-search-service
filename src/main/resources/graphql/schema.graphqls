@@ -1,0 +1,38 @@
+type Query {
+  getById(id: String): Person
+  findAll: [Person]
+  findByFirstName(firstName: String): [Person]
+  findByLastName(lastName: String): [Person]
+}
+
+type Mutation {
+  save(person: PersonInput): Person
+}
+
+
+type Address {
+  id: String
+  city: String
+  street: String
+}
+
+type Person {
+  id: String
+  address: Address
+  firstName: String!
+  lastName: String!
+}
+
+
+input AddressInput {
+  id: String
+  city: String
+  street: String
+}
+
+input PersonInput {
+  id: String
+  address: AddressInput
+  firstName: String!
+  lastName: String!
+}

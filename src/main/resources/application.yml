@@ -15,7 +15,6 @@ management:
 #persistence
 database.provisioning.goals: "-import-demo-data"
 
-
 spring:
   data:
     #mongodb
@@ -36,6 +35,10 @@ elastic.configuration: "org.springframework.boot.autoconfigure.elasticsearch.Ela
 mongodb.configuration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 
 spring.autoconfigure.exclude: ${elastic.configuration}
+
+#graphql
+spring.graphql.graphiql.enabled: "true"
+spring.graphql.graphiql.path: "/graphiql"
 
 #log levels
 logging.level.root: "WARN"
