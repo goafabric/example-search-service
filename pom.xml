@@ -13,13 +13,7 @@
     <artifactId>example-search-service</artifactId>
     <version>3.0.0-RC3</version>
 
-    <properties>
-        <spring.boot.version>${spring.boot-3.version}</spring.boot.version>
-        <spring.cloud.version>2022.0.0-RC1</spring.cloud.version>
-    </properties>
-
     <modelVersion>4.0.0</modelVersion>
-
 
     <dependencies>
         <!-- web -->
