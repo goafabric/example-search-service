@@ -36,18 +36,18 @@ public class PersonController {
 
     @GetMapping("findByFirstName")
     @QueryMapping("findByFirstName")
-    public List<Person> findByFirstName(@RequestParam("firstName") @Argument String firstName) {
+    public List<Person> findByFirstName(@RequestParam("firstName") @Argument("firstName") String firstName) {
         return personLogic.findByFirstName(firstName);
     }
 
     @GetMapping("findByLastName")
     @QueryMapping("findByLastName")
-    public List<Person> findByLastName(@RequestParam("lastName") @Argument String lastName) {
+    public List<Person> findByLastName(@RequestParam("lastName") @Argument("lastName") String lastName) {
         return personLogic.findByLastName(lastName);
     }
 
     @GetMapping("findByCity")
-    public List<Person> findByCity(@RequestParam("city") @Argument String city) {
+    public List<Person> findByCity(@RequestParam("city") @Argument("city") String city) {
         return personLogic.findByCity(city);
     }
 
