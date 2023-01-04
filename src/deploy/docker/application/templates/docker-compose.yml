@@ -13,16 +13,86 @@ services:
       - applogs:/usr/share/logs
     networks:
       - ${_Values_root_name}-net
-
     environment:
       - TZ=Europe/Berlin
-      - elasticsearch.url=host.docker.internal:9200
-      - spring.data.mongodb.host=host.docker.internal
+      - spring.data.mongodb.host=mongodb
+      - spring.elasticsearch.uris=elasticsearch:9200
       - database.provisioning.goals=-import-demo-data
+      - spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
+#      - spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
+    depends_on:
+      mongodb:
+        condition: service_started
+      elasticsearch:
+        condition: service_healthy
+
+
+  mongodb:
+    image: mongo:6.0.1
+    container_name: ${_Values_root_name}-mongodb
+    restart: 'no'
+    ports:
+      - 27017:27017
+    volumes:
+      - mongoconfig:/data/configdb
+      - mongodata:/data/db
+    networks:
+      - ${_Values_root_name}-net
+    environment:
+      - TZ=Europe/Berlin
+      - MONGO_INITDB_ROOT_USERNAME=mongodb
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 64M
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    container_name: ${_Values_root_name}-elasticsearch
+    restart: 'no'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+      - esconfig:/usr/share/elasticsearch/config
+      - eslogs:/usr/share/elasticsearch/logs
+    tmpfs:
+      - /tmp:exec,mode=1777
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--noproxy", "localhost", "http://localhost:9200/_cluster/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    ports:
+      - 9200:9200
+    networks:
+      - ${_Values_root_name}-net
+    environment:
+      - TZ=Europe/Berlin
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+      - xpack.security.http.ssl.enabled=false
+
 
 volumes:
   tmp:
   applogs:
+  esdata:
+    driver: local
+  esconfig:
+    driver: local
+  eslogs:
+    driver: local
+
+  mongoconfig:
+    driver: local
+  mongodata:
+    driver: local
 
 networks:
   example-search-service-net:
