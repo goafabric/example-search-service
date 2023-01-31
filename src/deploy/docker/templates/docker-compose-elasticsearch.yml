@@ -1,0 +1,7 @@
+services:
+  application:
+    environment:
+      spring.autoconfigure.exclude: ${_Values_mongodb_configuration}
+    depends_on:
+      elasticsearch:
+        condition: service_healthy

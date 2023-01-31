@@ -32,17 +32,6 @@ services:
       spring.elasticsearch.uris: "elasticsearch:9200"
       database.provisioning.goals: "-import-demo-data"
 
-      #profile
-      spring.autoconfigure.exclude: ${_Values_exclusion_configuration}
-#      spring.autoconfigure.exclude: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
-
-#    depends_on:
-#      mongodb:
-#        condition: service_started
-#      elasticsearch:
-#        condition: service_healthy
-
-
   mongodb:
     image: mongo:6.0.1
     container_name: ${_Values_root_name}-mongodb

@@ -8,18 +8,14 @@ export _Values_image_native="" && [[ "${OPTION}" = "-native" ]] && export _Value
 export _Values_nginx_oauth2="" && [[ "${OPTION}" = "-oidc" ]] && export _Values_nginx_oauth2="_oidc"
 docker ps | grep loki > /dev/null && LOKI_COMPOSE="-f ./templates/docker-compose-loki.yml"
 
-[[ "${_Values_profile}" = "mongodb" ]] && export _Values_exclusion_configuration=${_Values_elastic_configuration}
-[[ "${_Values_profile}" = "elastic" ]] && export _Values_exclusion_configuration=${_Values_mongodb_configuration}
-
 function func_compose {
     echo Going $1 ...
-    docker-compose -p ${_Values_root_name} -f ./templates/docker-compose.yml $LOKI_COMPOSE --env-file .values $1 $2 $3 $4 $5
+    docker-compose -p ${_Values_root_name} -f ./templates/docker-compose.yml -f ./templates/docker-compose-${_Values_profile}.yml $LOKI_COMPOSE --env-file .values $1 $2 $3 $4 $5
 }
 
 if [ "${COMMAND}" = "up" ]
 then
-    echo ${_Values_exclusion_configuration}
-    func_compose up -d
+    func_compose up -d application ${_Values_profile}
 elif [ "${COMMAND}" = "down" ]
 then
     func_compose down
