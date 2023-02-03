@@ -33,7 +33,7 @@ services:
       database.provisioning.goals: "-import-demo-data"
 
   mongodb:
-    image: mongo:6.0.1
+    image: mongo:6.0.4
     container_name: ${_Values_root_name}-mongodb
     restart: 'no'
     ports:
@@ -47,13 +47,9 @@ services:
       TZ: "Europe/Berlin"
       MONGO_INITDB_ROOT_USERNAME: "mongodb"
       MONGO_INITDB_ROOT_PASSWORD: "mongodb"
-#    deploy:
-#      resources:
-#        limits:
-#          memory: 64M
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
     container_name: ${_Values_root_name}-elasticsearch
     restart: 'no'
     ulimits:
