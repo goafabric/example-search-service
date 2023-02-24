@@ -10,3 +10,6 @@ _Values_elasticsearch_configuration="org.springframework.boot.autoconfigure.elas
 _Values_mongodb_configuration="org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 
 _Values_profile=mongodb #elasticsearch
+
+_Values_health_check_disabled=false
+
