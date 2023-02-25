@@ -6,7 +6,7 @@ services:
     restart: 'no'
     ports:
       - "${_Values_service_port}:${_Values_service_port}"
-    command: ["-Xmx${_Values_resources_requests_memory}"]
+    entrypoint: ${_Values_resources_entrypoint}
 
 # not working because healthcheck will always try to ask both mongo + elastic and then fail
 
