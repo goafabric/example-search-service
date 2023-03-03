@@ -1,9 +1,7 @@
 package org.goafabric.example.searchservice.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.controller.dto.Person;
 import org.goafabric.example.searchservice.logic.PersonLogic;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -15,11 +13,12 @@ import java.util.List;
         produces = "application/json")
 
 @RestController
-@Slf4j
 public class PersonController {
-    @Autowired
-    private PersonLogic personLogic;
+    private final PersonLogic personLogic;
 
+    public PersonController(PersonLogic personLogic) {
+        this.personLogic = personLogic;
+    }
 
     @GetMapping("getById/{id}")
     @QueryMapping("getById")

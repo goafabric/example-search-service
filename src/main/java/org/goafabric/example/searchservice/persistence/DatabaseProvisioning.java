@@ -1,12 +1,12 @@
 package org.goafabric.example.searchservice.persistence;
 
-import lombok.extern.slf4j.Slf4j;
 import org.goafabric.example.searchservice.controller.dto.Address;
 import org.goafabric.example.searchservice.controller.dto.Person;
 import org.goafabric.example.searchservice.controller.dto.Skill;
 import org.goafabric.example.searchservice.crossfunctional.HttpInterceptor;
 import org.goafabric.example.searchservice.logic.PersonLogic;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -17,16 +17,20 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-@Slf4j
 public class DatabaseProvisioning {
-    @Value("${database.provisioning.goals:}")
-    String goals;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    PersonLogic personLogic;
+    private final String goals;
 
-    @Autowired
-    ApplicationContext applicationContext;
+    private final PersonLogic personLogic;
+
+    private final ApplicationContext applicationContext;
+
+    public DatabaseProvisioning(@Value("${database.provisioning.goals:}") String goals, PersonLogic personLogic, ApplicationContext applicationContext) {
+        this.goals = goals;
+        this.personLogic = personLogic;
+        this.applicationContext = applicationContext;
+    }
 
     public void run() {
         if (goals.contains("-import-demo-data")) {

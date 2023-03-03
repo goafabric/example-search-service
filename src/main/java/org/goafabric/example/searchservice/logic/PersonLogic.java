@@ -1,9 +1,8 @@
 package org.goafabric.example.searchservice.logic;
 
 import org.goafabric.example.searchservice.controller.dto.Person;
-import org.goafabric.example.searchservice.persistence.domain.PersonBo;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.goafabric.example.searchservice.persistence.domain.PersonBo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,11 +11,14 @@ import java.util.stream.StreamSupport;
 
 @Component
 public class PersonLogic {
-    @Autowired
-    private PersonMapper personMapper;
+    private final PersonMapper personMapper;
 
-    @Autowired
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
+
+    public PersonLogic(PersonMapper personMapper, PersonRepository personRepository) {
+        this.personMapper = personMapper;
+        this.personRepository = personRepository;
+    }
 
     public Person getById(String id) {
         return personMapper.map(
