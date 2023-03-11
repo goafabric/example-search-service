@@ -35,7 +35,7 @@ spring:
 elastic.configuration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"
 mongodb.configuration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 
-spring.autoconfigure.exclude: ${mongodb.configuration}
+spring.autoconfigure.exclude: ${elastic.configuration}
 
 #graphql
 spring.graphql.graphiql.enabled: "true"
