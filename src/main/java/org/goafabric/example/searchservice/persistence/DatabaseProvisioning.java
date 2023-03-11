@@ -63,41 +63,43 @@ public class DatabaseProvisioning {
 
     private void createDemoData(String tenantId) {
         HttpInterceptor.setTenantId(tenantId);
-        personLogic.save(Person.builder()
-                .firstName("Homer").lastName("Simpson")
-                .address(createAddress("Evergreen Terace " + tenantId))
-                .skills(createSkills())
-                .build());
+        insertData();
+    }
 
-        personLogic.save(Person.builder()
-                .firstName("Bart").lastName("Simpson")
-                .address(createAddress("Everblue Terace " + tenantId))
-                .skills(createSkills())
-                .build());
+    private void insertData() {
+        personLogic.save(new Person(null,
+                "Homer",
+                "Simpson",
+                createAddress("Evergreen Terrace 1"),
+                createSkills()));
 
-        personLogic.save(Person.builder()
-                .firstName("Monty").lastName("Burns")
-                .address(createAddress("Monty Mansion"))
-                .skills(createSkills())
-                .build());
+        personLogic.save(new Person(null,
+                "Bart",
+                "Simpson",
+                createAddress("Everblue Terrace 1"),
+                createSkills()));
+
+        personLogic.save(new Person(null,
+                "Monty",
+                "Burns",
+                createAddress("Monty Mansion"),
+                createSkills()));
     }
 
     private Address createAddress(String street) {
-        return Address.builder()
-                .street(street).city("Springfield")
-                .build();
+        return new Address(null,
+                street, "Springfield " + HttpInterceptor.getTenantId());
     }
 
     private List<Skill> createSkills() {
         return Arrays.asList(
-                Skill.builder()
-                        .name("java")
-                        .description("functional")
-                        .build(),
-                Skill.builder()
-                        .name("go")
-                        .description("gopher")
-                        .build());
+                new Skill(null,
+                        "java", "functional"
+                ),
+                new Skill(null,
+                        "go", "gopher"
+                )
+        );
     }
 
 }
