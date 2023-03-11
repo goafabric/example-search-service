@@ -1,30 +1,17 @@
 package org.goafabric.example.searchservice.persistence.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @org.springframework.data.mongodb.core.mapping.Document("#{@tenantIdBean.getPrefix()}person")
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person")
-public class PersonBo {
+public record PersonBo(
     @Id
-    private String id;
-
-    private String firstName;
-
-    private String lastName;
-
-    //@Field(type = FieldType.Nested, includeInParent = true)
-    private AddressBo address;
-
-    //@Field(type = FieldType.Nested, includeInParent = true)
-    private List<SkillBo> skills;
-}
+    String id,
+    String firstName,
+    String lastName,
+    AddressBo address,
+    List<SkillBo> skills
+) {}

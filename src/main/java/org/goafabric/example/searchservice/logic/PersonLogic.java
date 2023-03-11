@@ -49,7 +49,6 @@ public class PersonLogic {
 
     public Person save(Person person) {
         final PersonBo personBo = personMapper.map(person);
-        personBo.setSkills(personBo.getSkills());
         return personMapper.map(
                 personRepository.save(
                         personBo));
