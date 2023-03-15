@@ -59,7 +59,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
-#    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+#    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
     container_name: ${_Values_root_name}-elasticsearch
     restart: 'no'
     ulimits:
