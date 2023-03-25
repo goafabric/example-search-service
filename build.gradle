@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = 'org.goafabric'
-version = '3.0.5-SNAPSHOT'
+version = '3.0.5-test-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
