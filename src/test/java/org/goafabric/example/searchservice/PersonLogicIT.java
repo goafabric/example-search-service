@@ -15,10 +15,7 @@ class PersonLogicIT {
     private PersonLogic personLogic;
 
     @BeforeAll
-    public static void init() {
-        ElasticTestContainer.start();
-        ElasticTestContainer.start();
-    }
+    public static void init() { ElasticTestContainer.start(); }
 
     @Test
     public void findAll() {
