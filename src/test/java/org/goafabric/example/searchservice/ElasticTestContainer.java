@@ -28,3 +28,7 @@ public class ElasticTestContainer {
         }
     }
 }
+
+
+//https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.1.0-M2-Release-Notes
+//https://www.baeldung.com/spring-dynamicpropertysource
