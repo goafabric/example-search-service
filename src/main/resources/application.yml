@@ -27,16 +27,11 @@ spring:
       password: mongodb
 
   elasticsearch:
-
     uris:
       - http://localhost:9200
 
-
-#activate mongodb or elasticsearch by excluding the other
-elastic.configuration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"
-mongodb.configuration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
-
-spring.autoconfigure.exclude: ${mongodb.configuration}
+#profile
+spring.profiles.active: "mongodb" #elasticsearch
 
 #graphql
 spring.graphql.graphiql.enabled: "true"

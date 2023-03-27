@@ -14,7 +14,7 @@ import java.util.Map;
 public class TestContainerExtension implements BeforeAllCallback {
 
     static {
-        if (getAppConfiguration().get("spring.autoconfigure.exclude").equals("${elastic.configuration}")) {
+        if (getAppConfiguration().get("spring.profiles.active").equals("mongodb")) {
             createMongoContainer();
         } else {
             createElasticContainer();
