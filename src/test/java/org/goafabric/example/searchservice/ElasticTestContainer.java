@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class ElasticTestContainer implements BeforeAllCallback {
 
-    private static GenericContainer container;
+    private static final GenericContainer container;
 
     static {
         container = new GenericContainer(
@@ -23,11 +23,11 @@ public class ElasticTestContainer implements BeforeAllCallback {
                     put("xpack.security.http.ssl.enabled", "false");
                 }});
         container.start();
+        System.setProperty("spring.elasticsearch.uris", "http://localhost:" + container.getMappedPort(9200));
     }
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
-        System.setProperty("spring.elasticsearch.uris", "http://localhost:" + container.getMappedPort(9200));
     }
 
 }
