@@ -43,7 +43,7 @@ spring.graphql.graphiql.enabled: "true"
 spring.graphql.graphiql.path: "/graphiql"
 
 #log levels
-logging.level.root: "INFO"
+logging.level.root: "WARN"
 logging.level.org.goafabric: "INFO"
 
 logging.level.org.springframework: "INFO"
