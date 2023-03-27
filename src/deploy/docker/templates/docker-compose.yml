@@ -42,7 +42,7 @@ services:
       database.provisioning.goals: "-import-demo-data"
 
       #profile
-      spring.profile.active: ${_Values_profile}
+      spring.profiles.active: ${_Values_profile}
 
   mongodb:
     image: mongo:6.0.4
