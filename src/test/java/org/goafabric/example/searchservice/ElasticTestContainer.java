@@ -22,11 +22,9 @@ public class ElasticTestContainer implements BeforeAllCallback {
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
         if (!container.isCreated()) {
-            System.out.println("### starting container");
             container.start();
             System.setProperty("spring.elasticsearch.uris", "http://localhost:" + container.getMappedPort(9200));
         }
-
     }
 }
 
