@@ -7,15 +7,22 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.shaded.org.yaml.snakeyaml.Yaml;
 import org.testcontainers.utility.DockerImageName;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ElasticTestContainer implements BeforeAllCallback {
-
-    private static final GenericContainer container;
+public class TestContainerExtension implements BeforeAllCallback {
 
     static {
-        container = new GenericContainer(
+        if (getAppConfiguration().get("spring.autoconfigure.exclude").equals("${elastic.configuration}")) {
+            createMongoContainer();
+        } else {
+            createElasticContainer();
+        }
+    }
+
+    private static GenericContainer createElasticContainer() {
+        var container =  new GenericContainer(
                 DockerImageName.parse("docker.elastic.co/elasticsearch/elasticsearch").withTag("8.6.1"))
                 .withExposedPorts(9200, 9300)
                 .withEnv(new HashMap<>() {{
@@ -27,14 +34,34 @@ public class ElasticTestContainer implements BeforeAllCallback {
                 }});
         container.start();
         System.setProperty("spring.elasticsearch.uris", "http://localhost:" + container.getMappedPort(9200));
+        return container;
+    }
+
+    private static GenericContainer createMongoContainer() {
+        var container = new GenericContainer(
+                DockerImageName.parse("mongo").withTag("6.0.4"))
+                .withExposedPorts(27017)
+                .withEnv(new HashMap<>() {{
+                    put("MONGO_INITDB_ROOT_USERNAME", "mongodb");
+                    put("MONGO_INITDB_ROOT_PASSWORD", "mongodb");
+                }});
+
+        container.start();
+        System.setProperty("spring.data.mongodb.port", String.valueOf(container.getMappedPort(27017)));
+        return container;
     }
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
-        Map<String, Object> props = new Yaml().load(new ClassPathResource("application.yml").getInputStream());
-        var x = props.get("spring.autoconfigure.exclude");
     }
 
+    private static Map<String, Object> getAppConfiguration() {
+        try {
+            return new Yaml().load(new ClassPathResource("application.yml").getInputStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

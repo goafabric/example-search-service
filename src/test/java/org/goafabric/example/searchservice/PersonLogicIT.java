@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ExtendWith(ElasticTestContainer.class)
+@ExtendWith(TestContainerExtension.class)
 class PersonLogicIT {
     @Autowired
     private PersonLogic personLogic;
