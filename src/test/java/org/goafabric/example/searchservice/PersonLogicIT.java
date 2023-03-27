@@ -18,6 +18,6 @@ class PersonLogicIT {
 
     @Test
     public void findAll() {
-        assertThat(personLogic.findAll()).isNotNull().hasSize(3);
+        assertThat(personLogic.findAll()).isNotNull().hasSize(2);
     }
 }
