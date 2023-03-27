@@ -30,6 +30,8 @@ spring:
     uris:
       - http://localhost:9200
 
+management.health.elasticsearch.enabled: false
+
 #profile
 spring.profiles.active: "mongodb"
 
