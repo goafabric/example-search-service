@@ -2,10 +2,13 @@ package org.goafabric.example.searchservice;
 
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.springframework.core.io.ClassPathResource;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.shaded.org.yaml.snakeyaml.Yaml;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ElasticTestContainer implements BeforeAllCallback {
 
@@ -28,6 +31,8 @@ public class ElasticTestContainer implements BeforeAllCallback {
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
+        Map<String, Object> props = new Yaml().load(new ClassPathResource("application.yml").getInputStream());
+        var x = props.get("spring.autoconfigure.exclude");
     }
 
 }
