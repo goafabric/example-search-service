@@ -1,10 +1,13 @@
 package org.goafabric.example.searchservice;
 
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.util.HashMap;
 
-public class ElasticTestContainer {
+public class ElasticTestContainer implements BeforeAllCallback {
+
     private static final ElasticsearchContainer container =
             new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:8.6.1")
                     .withExposedPorts(9200, 9300)
@@ -15,17 +18,15 @@ public class ElasticTestContainer {
                         put("xpack.security.transport.ssl.enabled", "false");
                         put("xpack.security.http.ssl.enabled", "false");
                     }});
-
-
-
-
-    public static synchronized void start() {
+    
+    @Override
+    public void beforeAll(ExtensionContext context) throws Exception {
         if (!container.isCreated()) {
             System.out.println("### starting container");
             container.start();
             System.setProperty("spring.elasticsearch.uris", "http://localhost:" + container.getMappedPort(9200));
-
         }
+
     }
 }
 
