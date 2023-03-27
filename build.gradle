@@ -54,7 +54,6 @@ dependencies {
 
 	//test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.testcontainers:elasticsearch:1.17.4'
 	testImplementation 'org.testcontainers:testcontainers:1.17.4'
 }
 
