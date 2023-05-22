@@ -42,7 +42,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
 	if (!gradle.startParameter.taskNames.contains("nativeCompile") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
-		implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
 
 	//monitoring
