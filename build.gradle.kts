@@ -38,7 +38,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 
 	//persistence
-	//implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	//implementation("org.springframework.boot:spring-boot-docker-compose")
 
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
