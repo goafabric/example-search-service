@@ -86,4 +86,4 @@ tasks.named<BootBuildImage>("bootBuildImage") {
 		exec { commandLine("docker", "push", nativeImageName) }
 	}
 }
-graalvmNative { binaries.named("main") { quickBuild.set(true) } }
+graalvmNative { binaries.named("main") { quickBuild.set(false) } }
