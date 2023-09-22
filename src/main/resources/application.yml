@@ -15,20 +15,8 @@ management:
 #persistence
 database.provisioning.goals: "-import-demo-data"
 
-spring:
-  data:
-    #mongodb
-    mongodb:
-      port: 27017
-      host: localhost
-      authentication-database: admin
-      database: search
-      username: mongodb
-      password: mongodb
-
-  elasticsearch:
-    uris:
-      - http://localhost:9200
+spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/search?authSource=admin"
+spring.data.elasticsearch.uris: "http://localhost:9200"
 
 management.health.elasticsearch.enabled: false
 de.flapdoodle.mongodb.embedded.version: 6.0.4

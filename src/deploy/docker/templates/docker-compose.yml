@@ -35,7 +35,7 @@ services:
       management.endpoints.web.exposure.include: "health,heapdump,circuitbreakers,prometheus"
 
       #persistence
-      spring.data.mongodb.host: "mongodb"
+      spring.data.mongodb.uri: "mongodb://mongodb:mongodb@mongodb:27017/search?authSource=admin"
       spring.elasticsearch.uris: "elasticsearch:9200"
       database.provisioning.goals: "-import-demo-data"
 
@@ -43,7 +43,7 @@ services:
       spring.profiles.active: ${_Values_profile}
 
   mongodb:
-    image: mongo:6.0.4
+    image: mongo:7.0.1
     container_name: ${_Values_root_name}-mongodb
     restart: 'no'
     ports:
