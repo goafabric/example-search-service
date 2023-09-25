@@ -1,6 +1,6 @@
 package org.goafabric.example.searchservice.persistence;
 
-import org.goafabric.example.searchservice.persistence.domain.PersonBo;
+import org.goafabric.example.searchservice.persistence.entity.PersonBo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 

@@ -1,8 +1,8 @@
 package org.goafabric.example.searchservice.logic;
 
-import org.goafabric.example.searchservice.controller.dto.Person;
+import org.goafabric.example.searchservice.controller.vo.Person;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
-import org.goafabric.example.searchservice.persistence.domain.PersonBo;
+import org.goafabric.example.searchservice.persistence.entity.PersonBo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.goafabric.example.searchservice.controller;
 
-import org.goafabric.example.searchservice.controller.dto.Person;
+import org.goafabric.example.searchservice.controller.vo.Person;
 import org.goafabric.example.searchservice.logic.PersonLogic;
 import org.springframework.web.bind.annotation.*;
 

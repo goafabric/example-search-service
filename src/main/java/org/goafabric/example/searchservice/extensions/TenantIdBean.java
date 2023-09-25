@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.crossfunctional;
+package org.goafabric.example.searchservice.extensions;
 
 import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.stereotype.Component;

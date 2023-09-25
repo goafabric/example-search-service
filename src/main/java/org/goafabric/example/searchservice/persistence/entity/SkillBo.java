@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.persistence.domain;
+package org.goafabric.example.searchservice.persistence.entity;
 
 
 import org.springframework.data.annotation.Id;

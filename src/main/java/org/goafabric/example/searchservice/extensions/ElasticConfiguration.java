@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.crossfunctional;
+package org.goafabric.example.searchservice.extensions;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;

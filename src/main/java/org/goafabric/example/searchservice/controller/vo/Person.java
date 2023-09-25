@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.controller.dto;
+package org.goafabric.example.searchservice.controller.vo;
 
 
 import java.util.List;

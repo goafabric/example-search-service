@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.crossfunctional;
+package org.goafabric.example.searchservice.extensions;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
