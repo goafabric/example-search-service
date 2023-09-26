@@ -15,14 +15,20 @@ management:
 #persistence
 database.provisioning.goals: "-import-demo-data"
 
-spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/search?authSource=admin"
-spring.data.elasticsearch.uris: "http://localhost:9200"
-
-management.health.elasticsearch.enabled: false
+#mongo
+spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/person?authSource=admin"
 de.flapdoodle.mongodb.embedded.version: 6.0.4
 
+#elastic
+spring.data.elasticsearch.uris: "http://localhost:9200"
+management.health.elasticsearch.enabled: false
+
 #profile
-spring.profiles.active: "mongodb"
+spring.autoconfigure.exclude: ${elastic.autoconfiguration}
+mongodb.autoconfiguration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
+elastic.autoconfiguration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"
+
+jpa.autoconfiguration: "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration"
 
 #graphql
 spring.graphql.graphiql.enabled: "true"

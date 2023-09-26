@@ -5,6 +5,7 @@ services:
         condition: service_healthy
     environment:
       spring.elasticsearch.uris: "elasticsearch:9200"
+      spring.autoconfigure.exclude: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.1
