@@ -3,6 +3,8 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
+    environment:
+      spring.elasticsearch.uris: "elasticsearch:9200"
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.1

@@ -3,6 +3,8 @@ services:
     depends_on:
       mongodb:
         condition: service_started
+    environment:
+      spring.data.mongodb.uri: "mongodb://mongodb:mongodb@mongodb:27017/search?authSource=admin"
 
   mongodb:
     image: mongo:7.0.1

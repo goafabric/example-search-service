@@ -9,6 +9,6 @@ _Values_resources_entrypoint_native="/workspace/org.goafabric.example.searchserv
 
 _Values_health_check_disabled=false
 
-_Values_profile=elasticsearch
+_Values_profile=mongodb #elasticsearch
 
 

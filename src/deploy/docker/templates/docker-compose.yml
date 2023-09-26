@@ -35,8 +35,6 @@ services:
       management.endpoints.web.exposure.include: "health,heapdump,circuitbreakers,prometheus"
 
       #persistence
-      spring.data.mongodb.uri: "mongodb://mongodb:mongodb@mongodb:27017/search?authSource=admin"
-      spring.elasticsearch.uris: "elasticsearch:9200"
       database.provisioning.goals: "-import-demo-data"
 
       #profile
