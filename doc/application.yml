@@ -1,0 +1,43 @@
+server:
+  port: 50800
+  tomcat.threads.max: 20
+
+## actuator section
+management:
+    endpoints:
+      web:
+        exposure:
+          include: "info,health,heapdump,prometheus"
+    endpoint:
+      health:
+        show-details: always
+
+#persistence
+database.provisioning.goals: "-import-demo-data"
+
+#mongo
+spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/person?authSource=admin"
+de.flapdoodle.mongodb.embedded.version: 6.0.4
+
+#elastic
+spring.data.elasticsearch.uris: "http://localhost:9200"
+management.health.elasticsearch.enabled: false
+
+#profile
+spring.autoconfigure.exclude: ${mongodb.autoconfiguration}
+mongodb.autoconfiguration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
+elastic.autoconfiguration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration.class, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration.class, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration.class"
+jpa.autoconfiguration: "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration, org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration"
+
+#graphql
+spring.graphql.graphiql.enabled: "true"
+spring.graphql.graphiql.path: "/graphiql"
+
+#log levels
+logging.level.root: "WARN"
+logging.level.org.goafabric: "INFO"
+
+logging.level.org.springframework: "INFO"
+logging.level.org.flywaydb.core: "INFO"
+logging.level.org.hibernate.SQL: "DEBUG"
+
