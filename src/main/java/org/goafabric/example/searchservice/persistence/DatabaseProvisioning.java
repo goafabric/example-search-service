@@ -55,7 +55,7 @@ public class DatabaseProvisioning {
 
         if (!dataExists) {
             createDemoData("0");
-            createDemoData("5a2f");
+            createDemoData("5");
         } else {
             log.info("Demo data already exists, skipping import ...");
         }
