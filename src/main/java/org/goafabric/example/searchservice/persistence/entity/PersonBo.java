@@ -7,6 +7,7 @@ import java.util.List;
 
 @org.springframework.data.mongodb.core.mapping.Document("#{@tenantIdBean.getPrefix()}person")
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person", createIndex = false)
+//@RedisHash("address")
 public record PersonBo(
     @Id
     String id,
