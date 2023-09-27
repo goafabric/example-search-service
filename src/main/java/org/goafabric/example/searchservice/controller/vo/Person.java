@@ -7,6 +7,6 @@ public record Person (
     String id,
     String firstName,
     String lastName,
-    Address address,
+    List<Address> address,
     List<Skill> skills
 ) {}

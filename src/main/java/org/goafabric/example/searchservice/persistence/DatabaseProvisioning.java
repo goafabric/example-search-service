@@ -14,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -86,9 +87,9 @@ public class DatabaseProvisioning {
                 createSkills()));
     }
 
-    private Address createAddress(String street) {
-        return new Address(null,
-                street, "Springfield " + HttpInterceptor.getTenantId());
+    private List<Address> createAddress(String street) {
+        return Collections.singletonList(new Address(null,
+                street, "Springfield " + HttpInterceptor.getTenantId()));
     }
 
     private List<Skill> createSkills() {

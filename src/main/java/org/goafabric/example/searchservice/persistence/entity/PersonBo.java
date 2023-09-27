@@ -17,6 +17,6 @@ public record PersonBo(
     String firstName,
     @Indexed
     String lastName,
-    AddressBo address,
+    List<AddressBo> address,
     List<SkillBo> skills
 ) {}
