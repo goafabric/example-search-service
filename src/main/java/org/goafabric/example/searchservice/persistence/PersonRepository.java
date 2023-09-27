@@ -12,5 +12,7 @@ public interface PersonRepository extends CrudRepository<PersonBo, String> {
 
     List<PersonBo> findByLastNameStartsWithIgnoreCase(String lastName);
     List<PersonBo> findByAddress_City(@Param("city") String city);
+
+    List<PersonBo> findByAddress_StreetContainsIgnoreCase(String street);
 }
 

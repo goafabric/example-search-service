@@ -47,6 +47,11 @@ public class PersonLogic {
                 personRepository.findByAddress_City(city));
     }
 
+    public List<Person> findByStreet(String street) {
+        return personMapper.map(
+                personRepository.findByAddress_StreetContainsIgnoreCase(street));
+    }
+
     public Person save(Person person) {
         final PersonBo personBo = personMapper.map(person);
         return personMapper.map(

@@ -47,6 +47,12 @@ public class PersonController {
         return personLogic.findByCity(city);
     }
 
+    @GetMapping("findByStreet")
+    public List<Person> findByStreet(String street) {
+        return personLogic.findByStreet(street);
+    }
+
+
     @PostMapping(value = "save", consumes = "application/json")
     //@MutationMapping("save")
     public Person save(@RequestBody Person person) {
