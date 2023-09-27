@@ -43,17 +43,6 @@ services:
 volumes:
   tmp:
   applogs:
-  esdata:
-    driver: local
-  esconfig:
-    driver: local
-  eslogs:
-    driver: local
-
-  mongoconfig:
-    driver: local
-  mongodata:
-    driver: local
 
 networks:
   example-search-service-net:
