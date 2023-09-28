@@ -10,13 +10,13 @@ import java.util.List;
 @org.springframework.data.mongodb.core.mapping.Document("#{@tenantIdBean.getPrefix()}person")
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "#{@tenantIdBean.getPrefix()}person", createIndex = false)
 @RedisHash("#{@tenantIdBean.getPrefix()}address")
-public record PersonBo(
+public record PersonEo(
     @Id
     String id,
     @Indexed
     String firstName,
     @Indexed
     String lastName,
-    List<AddressBo> address,
-    List<SkillBo> skills
+    List<AddressEo> address,
+    List<SkillEo> skills
 ) {}

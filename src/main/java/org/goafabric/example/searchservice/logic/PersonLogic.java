@@ -2,7 +2,7 @@ package org.goafabric.example.searchservice.logic;
 
 import org.goafabric.example.searchservice.controller.vo.Person;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
-import org.goafabric.example.searchservice.persistence.entity.PersonBo;
+import org.goafabric.example.searchservice.persistence.entity.PersonEo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class PersonLogic {
     }
 
     public List<Person> findByFirstName(String firstName) {
-        List<PersonBo> persons = personRepository.findByFirstName(firstName);
+        List<PersonEo> persons = personRepository.findByFirstName(firstName);
         //List<SkillBo> skills = persons.get(0).getSkills();
         return personMapper.map(persons);
     }
@@ -53,10 +53,10 @@ public class PersonLogic {
     }
 
     public Person save(Person person) {
-        final PersonBo personBo = personMapper.map(person);
+        final PersonEo personEo = personMapper.map(person);
         return personMapper.map(
                 personRepository.save(
-                        personBo));
+                        personEo));
     }
 
     public void deleteAll() {
