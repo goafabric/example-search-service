@@ -20,7 +20,7 @@ spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/person?authS
 de.flapdoodle.mongodb.embedded.version: 6.0.4
 
 #elastic
-spring.data.elasticsearch.uris: "http://localhost:9200"
+spring.elasticsearch.uris: "http://localhost:9200"
 management.health.elasticsearch.enabled: false
 
 #profile
