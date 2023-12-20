@@ -23,7 +23,7 @@ de.flapdoodle.mongodb.embedded.version: 6.0.4
 spring.elasticsearch.uris: "http://localhost:9200"
 management.health.elasticsearch.enabled: false
 
-#profile
+#profile, we append "." to not exclude a specific autoconfiguration to select the database
 spring.autoconfigure.exclude:
   ${mongodb.autoconfiguration.},${elasticsearch.autoconfiguration},${redis.autoconfiguration}
 
