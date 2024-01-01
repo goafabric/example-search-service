@@ -2,10 +2,8 @@ package org.goafabric.example.searchservice.lucene;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.search.FuzzyQuery;
-import org.apache.lucene.search.PrefixQuery;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.WildcardQuery;
+import org.apache.lucene.search.*;
+import org.apache.lucene.util.BytesRef;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -59,6 +57,19 @@ public class LuceneIT {
 
         List<Document> documents = inMemoryLuceneIndex.searchIndex(query);
         assertEquals(2, documents.size());
+    }
+
+    @Test
+    public void phraseSearch() {
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
+        inMemoryLuceneIndex.indexDocument(
+                "quotes", "A rose by any other name would smell as sweet.");
+
+        Query query = new PhraseQuery(
+                1, "myFullText", new BytesRef("smell"), new BytesRef("sweet"));
+
+        List<Document> documents = inMemoryLuceneIndex.searchIndex(query);
+        assertEquals(1, documents.size());
     }
 
     @Test
