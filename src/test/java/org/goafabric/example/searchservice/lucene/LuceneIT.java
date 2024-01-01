@@ -1,10 +1,8 @@
 package org.goafabric.example.searchservice.lucene;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.FuzzyQuery;
-import org.apache.lucene.store.ByteBuffersDirectory;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -19,8 +17,7 @@ public class LuceneIT {
 
     @Test
     public void givenSearchQueryWhenFetchedDocumentThenCorrect() throws IOException {
-        var inMemoryLuceneIndex = new InMemoryLuceneIndex(new ByteBuffersDirectory(), new StandardAnalyzer());
-        //var inMemoryLuceneIndex  = new InMemoryLuceneIndex(new NIOFSDirectory(Path.of("/Users/andreas/Downloads/lucene")), new StandardAnalyzer());
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
 
         inMemoryLuceneIndex.indexDocument("Hello world", "Some hello world");
 
@@ -37,7 +34,7 @@ public class LuceneIT {
 
     @Test
     public void fuzzySearch() {
-        var inMemoryLuceneIndex = new InMemoryLuceneIndex(new ByteBuffersDirectory(), new StandardAnalyzer());
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
 
         inMemoryLuceneIndex.indexDocument("article", "Halloween Festival");
         inMemoryLuceneIndex.indexDocument("decoration", "Decorations for Halloween");
@@ -52,7 +49,7 @@ public class LuceneIT {
     //only works with single search terms, not complete name
     @Test
     public void fuzzyMueller() {
-        var inMemoryLuceneIndex = new InMemoryLuceneIndex(new ByteBuffersDirectory(), new StandardAnalyzer());
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
         inMemoryLuceneIndex.indexDocument("article", "hans müller");
 
         assertThat(inMemoryLuceneIndex.searchIndex(
@@ -70,7 +67,7 @@ public class LuceneIT {
 
     @Test
     public void fuzzyMeyer() {
-        var inMemoryLuceneIndex = new InMemoryLuceneIndex(new ByteBuffersDirectory(), new StandardAnalyzer());
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
         inMemoryLuceneIndex.indexDocument("article", "erich meyer");
 
         assertThat(inMemoryLuceneIndex.searchIndex(

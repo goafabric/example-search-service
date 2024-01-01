@@ -1,6 +1,7 @@
 package org.goafabric.example.searchservice.lucene;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.SortedDocValuesField;
@@ -8,7 +9,11 @@ import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.*;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.BytesRef;
 
@@ -18,13 +23,14 @@ import java.util.List;
 
 public class InMemoryLuceneIndex {
 
-    private Directory memoryIndex;
-    private Analyzer analyzer;
+    private final Directory memoryIndex;
+    private final Analyzer analyzer;
 
-    public InMemoryLuceneIndex(Directory memoryIndex, Analyzer analyzer) {
+
+    public InMemoryLuceneIndex() {
         super();
-        this.memoryIndex = memoryIndex;
-        this.analyzer = analyzer;
+        this.memoryIndex = new ByteBuffersDirectory();
+        this.analyzer = new StandardAnalyzer(); //new NIOFSDirectory(Path.of("/Users/andreas/Downloads/lucene")
     }
 
     /**
@@ -33,53 +39,28 @@ public class InMemoryLuceneIndex {
      * @param body
      */
     public void indexDocument(String title, String body) {
-
-        IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-        try {
-            IndexWriter writter = new IndexWriter(memoryIndex, indexWriterConfig);
-            Document document = new Document();
-
+        try (var writer = new IndexWriter(memoryIndex, new IndexWriterConfig(analyzer))) {
+            var document = new Document();
             document.add(new TextField("title", title, Field.Store.YES));
             document.add(new TextField("body", body, Field.Store.YES));
             document.add(new SortedDocValuesField("title", new BytesRef(title)));
 
-            writter.addDocument(document);
-            writter.close();
+            writer.addDocument(document);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
     public List<Document> searchIndex(String inField, String queryString) {
+        Query query = null;
         try {
-            Query query = new QueryParser(inField, analyzer).parse(queryString);
-
-            IndexReader indexReader = DirectoryReader.open(memoryIndex);
-            IndexSearcher searcher = new IndexSearcher(indexReader);
-            TopDocs topDocs = searcher.search(query, 10);
-            List<Document> documents = new ArrayList<>();
-            for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
-                documents.add(searcher.doc(scoreDoc.doc));
-            }
-
-            return documents;
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            query = new QueryParser(inField, analyzer).parse(queryString);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-        return null;
-
+        return searchIndex(query);
     }
 
-    public void deleteDocument(Term term) {
-        try {
-            IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-            IndexWriter writter = new IndexWriter(memoryIndex, indexWriterConfig);
-            writter.deleteDocuments(term);
-            writter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public List<Document> searchIndex(Query query) {
         try {
@@ -93,10 +74,20 @@ public class InMemoryLuceneIndex {
 
             return documents;
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*
+        public void deleteDocument(Term term) {
+        try {
+            IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
+            IndexWriter writter = new IndexWriter(memoryIndex, indexWriterConfig);
+            writter.deleteDocuments(term);
+            writter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
-
     }
 
     public List<Document> searchIndex(Query query, Sort sort) {
@@ -116,5 +107,9 @@ public class InMemoryLuceneIndex {
         return null;
 
     }
+
+     */
+
+
 
 }
