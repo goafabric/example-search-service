@@ -21,6 +21,7 @@ import org.apache.lucene.util.BytesRef;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InMemoryLuceneIndex {
@@ -70,6 +71,8 @@ public class InMemoryLuceneIndex {
                     DirectoryReader.open(directory));
 
             TopDocs hits = searcher.search(query, 10);
+
+            Arrays.stream(hits.scoreDocs).forEach(score -> System.err.println(score.toString()));
 
             List<Document> documents = new ArrayList<>();
             for (ScoreDoc hit : hits.scoreDocs) {
