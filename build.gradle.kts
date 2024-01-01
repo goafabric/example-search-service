@@ -63,7 +63,7 @@ dependencies {
 
 	//lucene
 	//implementation("org.apache.lucene:lucene-core:9.9.1")
-	implementation("org.apache.lucene:lucene-queryparser:7.1.0")
+	implementation("org.apache.lucene:lucene-queryparser:9.9.1")
 
 }
 
