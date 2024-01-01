@@ -83,4 +83,22 @@ public class LuceneIT {
                 new FuzzyQuery(new Term("myFullText", "müller")))).hasSize(0);
     }
 
+
+    /*
+    @Test
+    public void fuzzyMueller2() throws ParseException {
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
+        inMemoryLuceneIndex.indexDocument("article", "hans müller");
+
+        String[] fields = {"title", "myFullText"};
+        QueryParser queryParser = new MultiFieldQueryParser(fields, inMemoryLuceneIndex.getAnalyzer());
+        String queryString = "hans maulwurf";
+        Query query = queryParser.parse(queryString);
+
+        List<Document> results = inMemoryLuceneIndex.searchIndex(query);
+
+        assertThat(results).hasSize(1);
+    }
+    
+     */
 }
