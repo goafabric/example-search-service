@@ -22,7 +22,7 @@ public class LuceneIT {
         inMemoryLuceneIndex.indexDocument("Hello world", "Some hello world");
 
         List<Document> documents
-                = inMemoryLuceneIndex.searchIndex("myFullText", "world");
+                = inMemoryLuceneIndex.searchIndex("myFullText", "hello world");
 
         documents.forEach(System.err::println);
 
