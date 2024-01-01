@@ -14,6 +14,7 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.BytesRef;
@@ -65,13 +66,14 @@ public class InMemoryLuceneIndex {
 
     public List<Document> searchIndex(Query query) {
         try {
-            var indexReader = DirectoryReader.open(memoryIndex);
-            var searcher = new IndexSearcher(indexReader);
-            var topDocs = searcher.search(query, 10);
+            var searcher = new IndexSearcher(
+                    DirectoryReader.open(memoryIndex));
+
+            TopDocs hits = searcher.search(query, 10);
 
             List<Document> documents = new ArrayList<>();
-            for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
-                documents.add(searcher.doc(scoreDoc.doc));
+            for (ScoreDoc hit : hits.scoreDocs) {
+                documents.add(searcher.storedFields().document(hit.doc));
             }
 
             return documents;
