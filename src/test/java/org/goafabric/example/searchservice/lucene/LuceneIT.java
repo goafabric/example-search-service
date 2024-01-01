@@ -7,6 +7,7 @@ import org.apache.lucene.util.BytesRef;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -90,7 +91,7 @@ public class LuceneIT {
     @Test
     public void fuzzyMueller() {
         var inMemoryLuceneIndex = new InMemoryLuceneIndex();
-        inMemoryLuceneIndex.indexDocument("article", "hans müller");
+        inMemoryLuceneIndex.indexDocument("article", "Hans Müller");
 
         assertThat(inMemoryLuceneIndex.searchIndex(
                 new FuzzyQuery(new Term("myFullText", "müller")))).hasSize(1);
@@ -109,7 +110,7 @@ public class LuceneIT {
     @Test
     public void fuzzyMeyer() {
         var inMemoryLuceneIndex = new InMemoryLuceneIndex();
-        inMemoryLuceneIndex.indexDocument("article", "erich meyer");
+        inMemoryLuceneIndex.indexDocument("article", "Erich Meyer");
 
         assertThat(inMemoryLuceneIndex.searchIndex(
                 new FuzzyQuery(new Term("myFullText", "meyer")))).hasSize(1);
@@ -128,43 +129,22 @@ public class LuceneIT {
     @Test
     public void fuzzyCombined() {
         var inMemoryLuceneIndex = new InMemoryLuceneIndex();
-        inMemoryLuceneIndex.indexDocument("article", "hans müller");
+        inMemoryLuceneIndex.indexDocument("article", "Hans Müller");
         
-        //var searchName = "hans mueller";
+        assertThat(inMemoryLuceneIndex.searchIndex(
+                createFuzzyCombined("hans mueller"))).hasSize(1);
 
-
-        var query = new BooleanQuery.Builder()
-                .add(new FuzzyQuery(new Term("myFullText", "hans")), BooleanClause.Occur.MUST)
-                .add(new FuzzyQuery(new Term("myFullText", "mueller")), BooleanClause.Occur.MUST)
-                .build();
-
-        assertThat(inMemoryLuceneIndex.searchIndex(query)).hasSize(1);
-
-        var query2 = new BooleanQuery.Builder()
-                .add(new FuzzyQuery(new Term("myFullText", "hans")), BooleanClause.Occur.MUST)
-                .add(new FuzzyQuery(new Term("myFullText", "meyer")), BooleanClause.Occur.MUST)
-                .build();
-
-        assertThat(inMemoryLuceneIndex.searchIndex(query2)).hasSize(0);
+        assertThat(inMemoryLuceneIndex.searchIndex(
+                createFuzzyCombined("hans meyer"))).hasSize(0);
 
     }
 
-
-    /*
-    @Test
-    public void fuzzyMueller2() throws ParseException {
-        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
-        inMemoryLuceneIndex.indexDocument("article", "hans müller");
-
-        String[] fields = {"title", "myFullText"};
-        QueryParser queryParser = new MultiFieldQueryParser(fields, inMemoryLuceneIndex.getAnalyzer());
-        String queryString = "hans maulwurf";
-        Query query = queryParser.parse(queryString);
-
-        List<Document> results = inMemoryLuceneIndex.searchIndex(query);
-
-        assertThat(results).hasSize(1);
+    private static BooleanQuery createFuzzyCombined(String searchString) {
+        var queryBuilder = new BooleanQuery.Builder();
+        Arrays.stream(searchString.split(" ")).forEach(phrase
+                -> queryBuilder.add(new FuzzyQuery(new Term("myFullText", phrase)), BooleanClause.Occur.MUST));
+        var query = queryBuilder.build();
+        return query;
     }
-    
-     */
+
 }
