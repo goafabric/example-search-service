@@ -103,6 +103,7 @@ public class LuceneIT {
 
         assertThat(inMemoryLuceneIndex.searchIndex(
                 new FuzzyQuery(new Term("myFullText", "meyer")))).hasSize(0);
+
     }
 
     @Test
@@ -121,6 +122,28 @@ public class LuceneIT {
 
         assertThat(inMemoryLuceneIndex.searchIndex(
                 new FuzzyQuery(new Term("myFullText", "müller")))).hasSize(0);
+
+    }
+
+    @Test
+    public void fuzzyCombined() {
+        var inMemoryLuceneIndex = new InMemoryLuceneIndex();
+        inMemoryLuceneIndex.indexDocument("article", "hans müller");
+
+        var query = new BooleanQuery.Builder()
+                .add(new FuzzyQuery(new Term("myFullText", "hans")), BooleanClause.Occur.MUST)
+                .add(new FuzzyQuery(new Term("myFullText", "mueller")), BooleanClause.Occur.MUST)
+                .build();
+
+        assertThat(inMemoryLuceneIndex.searchIndex(query)).hasSize(1);
+
+        var query2 = new BooleanQuery.Builder()
+                .add(new FuzzyQuery(new Term("myFullText", "hans")), BooleanClause.Occur.MUST)
+                .add(new FuzzyQuery(new Term("myFullText", "meyer")), BooleanClause.Occur.MUST)
+                .build();
+
+        assertThat(inMemoryLuceneIndex.searchIndex(query2)).hasSize(0);
+
     }
 
 
