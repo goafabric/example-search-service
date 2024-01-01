@@ -37,13 +37,13 @@ public class InMemoryLuceneIndex {
     /**
      *
      * @param title
-     * @param body
+     * @param myFullText
      */
-    public void indexDocument(String title, String body) {
+    public void indexDocument(String title, String myFullText) {
         try (var writer = new IndexWriter(memoryIndex, new IndexWriterConfig(analyzer))) {
             var document = new Document();
             document.add(new TextField("title", title, Field.Store.YES));
-            document.add(new TextField("body", body, Field.Store.YES));
+            document.add(new TextField("myFullText", myFullText, Field.Store.YES));
             document.add(new SortedDocValuesField("title", new BytesRef(title)));
 
             writer.addDocument(document);

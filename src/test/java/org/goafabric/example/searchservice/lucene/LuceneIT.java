@@ -22,7 +22,7 @@ public class LuceneIT {
         inMemoryLuceneIndex.indexDocument("Hello world", "Some hello world");
 
         List<Document> documents
-                = inMemoryLuceneIndex.searchIndex("body", "world");
+                = inMemoryLuceneIndex.searchIndex("myFullText", "world");
 
         documents.forEach(System.err::println);
 
@@ -39,7 +39,7 @@ public class LuceneIT {
         inMemoryLuceneIndex.indexDocument("article", "Halloween Festival");
         inMemoryLuceneIndex.indexDocument("decoration", "Decorations for Halloween");
 
-        var query = new FuzzyQuery(new Term("body", "hallowen"));
+        var query = new FuzzyQuery(new Term("myFullText", "hallowen"));
 
         var documents = inMemoryLuceneIndex.searchIndex(query);
         assertThat(documents).isNotEmpty();
@@ -53,16 +53,16 @@ public class LuceneIT {
         inMemoryLuceneIndex.indexDocument("article", "hans müller");
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "müller")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "müller")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "mueller")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "mueller")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "miller")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "miller")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "meyer")))).hasSize(0);
+                new FuzzyQuery(new Term("myFullText", "meyer")))).hasSize(0);
     }
 
     @Test
@@ -71,16 +71,16 @@ public class LuceneIT {
         inMemoryLuceneIndex.indexDocument("article", "erich meyer");
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "meyer")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "meyer")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "meier")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "meier")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "mayor")))).hasSize(1);
+                new FuzzyQuery(new Term("myFullText", "mayor")))).hasSize(1);
 
         assertThat(inMemoryLuceneIndex.searchIndex(
-                new FuzzyQuery(new Term("body", "müller")))).hasSize(0);
+                new FuzzyQuery(new Term("myFullText", "müller")))).hasSize(0);
     }
 
 }
