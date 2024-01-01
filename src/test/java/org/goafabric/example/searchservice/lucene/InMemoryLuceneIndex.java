@@ -25,13 +25,13 @@ import java.util.List;
 
 public class InMemoryLuceneIndex {
 
-    private final Directory memoryIndex;
+    private final Directory directory;
     private final Analyzer analyzer;
 
 
     public InMemoryLuceneIndex() {
         super();
-        this.memoryIndex = new ByteBuffersDirectory();
+        this.directory = new ByteBuffersDirectory();
         this.analyzer = new StandardAnalyzer(); //new NIOFSDirectory(Path.of("/Users/andreas/Downloads/lucene")
     }
 
@@ -41,7 +41,7 @@ public class InMemoryLuceneIndex {
      * @param myFullText
      */
     public void indexDocument(String title, String myFullText) {
-        try (var writer = new IndexWriter(memoryIndex, new IndexWriterConfig(analyzer))) {
+        try (var writer = new IndexWriter(directory, new IndexWriterConfig(analyzer))) {
             var document = new Document();
             document.add(new TextField("title", title, Field.Store.YES));
             document.add(new TextField("myFullText", myFullText, Field.Store.YES));
@@ -67,7 +67,7 @@ public class InMemoryLuceneIndex {
     public List<Document> searchIndex(Query query) {
         try {
             var searcher = new IndexSearcher(
-                    DirectoryReader.open(memoryIndex));
+                    DirectoryReader.open(directory));
 
             TopDocs hits = searcher.search(query, 10);
 
