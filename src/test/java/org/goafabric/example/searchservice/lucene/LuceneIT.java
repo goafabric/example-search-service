@@ -129,6 +129,9 @@ public class LuceneIT {
     public void fuzzyCombined() {
         var inMemoryLuceneIndex = new InMemoryLuceneIndex();
         inMemoryLuceneIndex.indexDocument("article", "hans müller");
+        
+        //var searchName = "hans mueller";
+
 
         var query = new BooleanQuery.Builder()
                 .add(new FuzzyQuery(new Term("myFullText", "hans")), BooleanClause.Occur.MUST)
