@@ -80,6 +80,10 @@ public class InMemoryLuceneIndex {
         }
     }
 
+    public Analyzer getAnalyzer() {
+        return analyzer;
+    }
+
     /*
         public void deleteDocument(Term term) {
         try {
