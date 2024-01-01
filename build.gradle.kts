@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 group = "org.goafabric"
-version = "3.2.0-SNAPSHOT"
+version = "3.2.0-lucene-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 val dockerRegistry = "goafabric"
@@ -60,6 +60,11 @@ dependencies {
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:testcontainers:1.17.6")
+
+	//lucene
+	//implementation("org.apache.lucene:lucene-core:9.9.1")
+	implementation("org.apache.lucene:lucene-queryparser:7.1.0")
+
 }
 
 tasks.withType<Test> {
