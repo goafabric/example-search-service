@@ -37,6 +37,31 @@ GET favorite_candy/_search
 }
 }
 
+
+GET favorite_candy/_search
+{
+    "query": {
+    "bool": {
+        "should": [
+        {
+            "wildcard": {
+            "last_name": {
+                "value": "mü*"
+            }
+        }
+        },
+        {
+            "fuzzy": {
+            "last_name": {
+                "value": "mu",
+                        "fuzziness": "AUTO"
+            }
+        }
+        }
+      ]
+    }
+}
+}
              
 # links
 http://localhost:9200/favorite_candy/_doc/1
