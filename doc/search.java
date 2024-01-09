@@ -1,32 +1,32 @@
 # Elastic
-PUT favorite_candy
+PUT person_names
 
-PUT favorite_candy/_doc/1
+PUT person_names/_doc/1
 {
     "first_name" : "Hans",
     "last_name" : "Müller"
 }
 
-PUT favorite_candy/_doc/2
+PUT person_names/_doc/2
 {
     "first_name" : "Erich",
     "last_name" : "Meyer"
 }
 
-GET favorite_candy/_doc/1
+GET person_names/_doc/1
 
-GET favorite_candy/_search
+GET person_names/_search
 {
-    "query": {
-    "fuzzy": {
-        "last_name": {
-            "value": "mueller"
+    "query":{
+        "fuzzy":{
+            "last_name":{
+                "value":"mueller"
+            }
         }
     }
 }
-}
 
-GET favorite_candy/_search
+GET person_names/_search
 {
     "query": {
     "prefix": {
@@ -38,7 +38,7 @@ GET favorite_candy/_search
 }
 
 
-GET favorite_candy/_search
+GET person_names/_search
 {
     "query": {
     "bool": {
@@ -64,7 +64,7 @@ GET favorite_candy/_search
 }
              
 # links
-http://localhost:9200/favorite_candy/_doc/1
+http://localhost:9200/person_names/_doc/1
 https://github.com/LisaHJung/Beginners-Crash-Course-to-Elastic-Stack-Series-Table-of-Contents
 
 https://www.baeldung.com/lucene

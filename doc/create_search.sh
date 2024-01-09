@@ -32,5 +32,5 @@ json_data='{
 
 put 2 "$json_data"
 
-search "Meyer"
+search "meier"
 
