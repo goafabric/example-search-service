@@ -7,13 +7,26 @@ function put {
 function search {
 json='
 {
-  "query":{
-      "fuzzy":{
-          "last_name":{
-              "value":"'${1}'"
-          }
-      }
-  }
+ "query": {
+    "bool": {
+        "should": [
+        {
+            "wildcard": {
+            "last_name": {
+                "value": "'${1}'*"
+            }
+        }
+        },
+        {
+            "fuzzy": {
+            "last_name": {
+                "value": "'${1}'"
+            }
+        }
+        }
+      ]
+    }
+}
 }'
     curl -X GET "localhost:9200/person_names/_search" -H 'Content-Type: application/json' -d "$json"
 }
