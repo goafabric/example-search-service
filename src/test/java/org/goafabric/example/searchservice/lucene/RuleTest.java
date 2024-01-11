@@ -15,11 +15,14 @@ public class RuleTest {
         private final Logger log = LoggerFactory.getLogger(this.getClass());
 
         public BillingFile create() {
-            return new BillingFile("4711");
+            return new BillingFile("42");
         }
 
         public BillingFile validate(BillingFile billingFile) {
             log.info("validating file with id: " + billingFile.id());
+            if (!billingFile.id().equals("42")) {
+                throw new IllegalStateException("Validation failed");
+            }
             return billingFile;
         }
 
@@ -72,6 +75,9 @@ public class RuleTest {
 
         public FluentADTProcessor validate() {
             log.info("validating file with id: " + billingFile.id());
+            if (!billingFile.id().equals("42")) {
+                throw new IllegalStateException("Validation failed");
+            }
             return this;
         }
 
