@@ -1,3 +1,6 @@
+# 3.2.5
+- release plugin added
+
 # 3.2.0
 - upgrade to Spring Boot 3.2.0
 - upgrade to java 21
