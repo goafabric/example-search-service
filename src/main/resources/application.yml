@@ -25,7 +25,7 @@ management.health.elasticsearch.enabled: false
 
 #profile, we append "." to not exclude a specific autoconfiguration to select the database
 spring.autoconfigure.exclude:
-  ${mongodb.autoconfiguration},${elasticsearch.autoconfiguration.},${redis.autoconfiguration}
+  ${mongodb.autoconfiguration.},${elasticsearch.autoconfiguration},${redis.autoconfiguration}
 
 mongodb.autoconfiguration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 elasticsearch.autoconfiguration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"

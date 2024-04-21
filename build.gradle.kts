@@ -41,6 +41,7 @@ dependencies {
 	//persistence
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+	//implementation("org.opensearch.client:spring-data-opensearch-starter:1.3.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
 	if (!gradle.startParameter.taskNames.contains("nativeCompile") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
@@ -88,8 +89,6 @@ tasks.named<BootBuildImage>("bootBuildImage") {
 		exec { commandLine("/bin/sh", "-c", "docker push $nativeImageName") }
 	}
 }
-
-graalvmNative { binaries.named("main") { quickBuild.set(true) } }
 
 configure<net.researchgate.release.ReleaseExtension> {
 	buildTasks.set(listOf("build", "test", "jib", "dockerImageNative"))
