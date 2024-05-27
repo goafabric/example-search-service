@@ -1,3 +1,15 @@
+# 3.3.0
+- upgrade to spring boot 3.3.0
+- database updates
+- graphql deactivated
+
+# 3.2.5
+- release plugin added
+
+# 3.2.0
+- upgrade to Spring Boot 3.2.0
+- upgrade to java 21
+
 # 3.1.4
 - upgrade to Spring Boot 3.1.4
 - maven build (re) moved to doc/maven in favour of gradle

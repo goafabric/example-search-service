@@ -1,6 +1,6 @@
 package org.goafabric.example.searchservice.controller;
 
-import org.goafabric.example.searchservice.controller.vo.Person;
+import org.goafabric.example.searchservice.controller.dto.Person;
 import org.goafabric.example.searchservice.logic.PersonLogic;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +50,11 @@ public class PersonController {
     @GetMapping("findByStreet")
     public List<Person> findByStreet(String street) {
         return personLogic.findByStreet(street);
+    }
+
+    @GetMapping("findBySkillName")
+    public List<Person> findBySkillName(String name) {
+        return personLogic.findBySkillName(name);
     }
 
 

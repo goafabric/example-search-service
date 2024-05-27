@@ -1,4 +1,4 @@
-package org.goafabric.example.searchservice.controller.vo;
+package org.goafabric.example.searchservice.controller.dto;
 
 public record Address (
         String id,

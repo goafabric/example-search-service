@@ -1,8 +1,8 @@
 package org.goafabric.example.searchservice.persistence;
 
-import org.goafabric.example.searchservice.controller.vo.Address;
-import org.goafabric.example.searchservice.controller.vo.Person;
-import org.goafabric.example.searchservice.controller.vo.Skill;
+import org.goafabric.example.searchservice.controller.dto.Address;
+import org.goafabric.example.searchservice.controller.dto.Person;
+import org.goafabric.example.searchservice.controller.dto.Skill;
 import org.goafabric.example.searchservice.extensions.HttpInterceptor;
 import org.goafabric.example.searchservice.logic.PersonLogic;
 import org.slf4j.Logger;

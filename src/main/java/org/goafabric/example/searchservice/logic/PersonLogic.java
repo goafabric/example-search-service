@@ -1,6 +1,6 @@
 package org.goafabric.example.searchservice.logic;
 
-import org.goafabric.example.searchservice.controller.vo.Person;
+import org.goafabric.example.searchservice.controller.dto.Person;
 import org.goafabric.example.searchservice.persistence.PersonRepository;
 import org.goafabric.example.searchservice.persistence.entity.PersonEo;
 import org.springframework.stereotype.Component;
@@ -51,6 +51,13 @@ public class PersonLogic {
         return personMapper.map(
                 personRepository.findByAddress_StreetContainsIgnoreCase(street));
     }
+
+    public List<Person> findBySkillName(String name) {
+        return personMapper.map(
+                personRepository.findBySkills_Name(name)
+        );
+    }
+
 
     public Person save(Person person) {
         final PersonEo personEo = personMapper.map(person);

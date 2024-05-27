@@ -17,19 +17,20 @@ database.provisioning.goals: "-import-demo-data"
 
 #mongo
 spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/person?authSource=admin"
-de.flapdoodle.mongodb.embedded.version: 6.0.4
+de.flapdoodle.mongodb.embedded.version: 7.0.9
 
 #elastic
-spring.data.elasticsearch.uris: "http://localhost:9200"
+spring.elasticsearch.uris: "http://localhost:9200"
 management.health.elasticsearch.enabled: false
 
-#profile
+#profile, we append "." to not exclude a specific autoconfiguration to select the database
 spring.autoconfigure.exclude:
-  ${mongodb.autoconfiguration.},${elasticsearch.autoconfiguration},${redis.autoconfiguration}
+  ${mongodb.autoconfiguration.},${elasticsearch.autoconfiguration},${redis.autoconfiguration} #${opensearch.autoconfiguration.inverse}
 
 mongodb.autoconfiguration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
 elasticsearch.autoconfiguration: "org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchClientAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration, org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration"
 redis.autoconfiguration: "org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration, org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration"
+opensearch.autoconfiguration.inverse: "org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration"
 
 #graphql
 spring.graphql.graphiql.enabled: "true"
