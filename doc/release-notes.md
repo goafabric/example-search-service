@@ -1,5 +1,7 @@
 # 3.3.0
 - upgrade to spring boot 3.3.0
+- database updates
+- graphql deactivated
 
 # 3.2.5
 - release plugin added
