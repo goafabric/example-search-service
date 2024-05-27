@@ -52,6 +52,11 @@ public class PersonLogic {
                 personRepository.findByAddress_StreetContainsIgnoreCase(street));
     }
 
+    public List<Person> findBySkillName(String name) {
+        return personMapper.map(
+                personRepository.findBySkills_Name(name));
+    }
+
     public Person save(Person person) {
         final PersonEo personEo = personMapper.map(person);
         return personMapper.map(

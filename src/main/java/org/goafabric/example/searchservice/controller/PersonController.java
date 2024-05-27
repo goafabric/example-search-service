@@ -52,6 +52,11 @@ public class PersonController {
         return personLogic.findByStreet(street);
     }
 
+    @GetMapping("findBySkillName")
+    public List<Person> findBySkillName(String name) {
+        return personLogic.findBySkillName(name);
+    }
+
 
     @PostMapping(value = "save", consumes = "application/json")
     //@MutationMapping("save")

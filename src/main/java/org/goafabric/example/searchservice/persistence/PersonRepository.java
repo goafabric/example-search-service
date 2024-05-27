@@ -14,5 +14,7 @@ public interface PersonRepository extends CrudRepository<PersonEo, String> {
     List<PersonEo> findByAddress_City(@Param("city") String city);
 
     List<PersonEo> findByAddress_StreetContainsIgnoreCase(String street);
+
+    List<PersonEo> findBySkills_Name(String name);
 }
 
