@@ -45,9 +45,11 @@ dependencies {
 	//implementation("org.opensearch.client:spring-data-opensearch-starter:1.3.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
+	/*
 	if (!gradle.startParameter.taskNames.contains("nativeCompile") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
-		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:4.13.0")
 	}
+	*/
 
 	//monitoring
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
