@@ -1,7 +1,8 @@
-# 3.3.1
+# 3.3.3
+- upgrade to spring boot 3.3.3         
 
 # 3.3.0
-- upgrade to spring boot 3.3.3
+- upgrade to spring boot 3.3.2
 - database updates
 - graphql deactivated
 
