@@ -5,7 +5,7 @@ services:
         condition: service_started
     environment:
       spring.data.mongodb.uri: "mongodb://mongodb:mongodb@mongodb:27017/search?authSource=admin"
-      spring.autoconfigure.exclude: "$${elasticsearch.autoconfiguration}"
+      spring.autoconfigure.exclude: "$${elasticsearch.autoconfiguration},$${redis.autoconfiguration}"
 
   mongodb:
     image: mongo:7.0.9
