@@ -17,7 +17,7 @@ database.provisioning.goals: "-import-demo-data"
 
 #mongo
 spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/person?authSource=admin"
-de.flapdoodle.mongodb.embedded.version: 7.0.9
+de.flapdoodle.mongodb.embedded.version: 7.0.14
 
 #elastic
 spring.elasticsearch.uris: "http://localhost:9200"
