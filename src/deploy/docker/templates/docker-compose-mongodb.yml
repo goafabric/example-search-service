@@ -8,7 +8,7 @@ services:
       spring.autoconfigure.exclude: "$${elasticsearch.autoconfiguration},$${redis.autoconfiguration}"
 
   mongodb:
-    image: mongo:7.0.14
+    image: mongo:8.0.1
     container_name: ${_Values_root_name}-mongodb
     restart: 'no'
     ports:
