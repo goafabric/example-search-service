@@ -68,7 +68,7 @@ dependencies {
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.testcontainers:testcontainers:1.17.6")
+	testImplementation("org.testcontainers:testcontainers:1.20.3")
 }
 
 tasks.withType<Test> {
